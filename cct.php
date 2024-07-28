@@ -14,3 +14,4 @@
  * Domain Path:       /languages
  * Requires Plugins:  advanced-custom-fields
  */
+defined("ABSPATH") OR exit("No direct script access allowed");
