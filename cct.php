@@ -15,3 +15,17 @@
  * Requires Plugins:  advanced-custom-fields
  */
 defined("ABSPATH") OR exit("No direct script access allowed");
+
+if(!function_exists('cct_home_cb')) {
+    add_shortcode('cct-home', 'cct_home_cb');
+    function cct_home_cb() {
+        ob_start();
+
+        include( plugin_dir_path(__FILE__) . 'templates/cct-home.php');
+        
+        $content = ob_get_contents();
+        ob_clean();
+
+        return $content;
+    }
+}
