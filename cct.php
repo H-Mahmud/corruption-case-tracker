@@ -29,3 +29,10 @@ if(!function_exists('cct_home_cb')) {
         return $content;
     }
 }
+
+if(!function_exists('cct_enqueues')) {
+    add_action('wp_enqueue_scripts', 'cct_enqueues');
+    function cct_enqueues() {
+        wp_enqueue_style('cct-style', plugin_dir_url(__FILE__) . 'assets/cct-style.css', [],time());
+    }
+}
