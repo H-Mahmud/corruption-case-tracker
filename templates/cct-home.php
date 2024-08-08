@@ -57,15 +57,16 @@
         ?>
 
         <div class="search-input-group">
-            <input type="search" placeholder="Search here...">
+            <input type="search" name="s" placeholder="Search here..." value="<?php the_search_query() ?>">
             <input class="search-btn" type="submit" value="Search">
         </div>
     </form>
+    <?php
+    $query = get_cct_cases();
+    if ($query->have_posts()) { ?>
 
-    <div class="cct-search-result">
-        <?php
-        $query = get_cct_cases();
-        if ($query->have_posts()) {
+        <div class="cct-search-result">
+            <?php
             while ($query->have_posts()) {
                 $query->the_post();
                 $status_field = get_field_object('case_status');
@@ -90,7 +91,42 @@
                 </article>
                 <?php
             }
+            ?>
+        </div>
+        <?php
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+        // Pagination Links
+        echo '<div class="cct-pagination">';
+
+        // Previous Page Link
+        if ($paged > 1) {
+            echo '<a class="page" href="' . get_pagenum_link($paged - 1) . '">Previous</a>';
         }
-        ?>
-    </div>
+
+        // Page Numbers
+        for ($i = 1; $i <= $query->max_num_pages; $i++) {
+            if ($i == $paged) {
+                echo '<span class="page">' . $i . '</span>';
+            } else {
+                echo '<a class="page" href="' . get_pagenum_link($i) . '">' . $i . '</a>';
+            }
+        }
+
+        // Next Page Link
+        if ($paged < $query->max_num_pages) {
+            echo '<a class="page" href="' . get_pagenum_link($paged + 1) . '">Next</a>';
+        }
+
+        echo '</div>';
+
+        // Reset post data
+        wp_reset_postdata();
+
+
+    } else {
+        echo '<h2>Not found</h2>';
+    }
+    ?>
+
 </div>

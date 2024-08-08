@@ -25,6 +25,12 @@ if (!function_exists('get_cct_cases')) {
         // Set Post type
         $query['post_type'] = 'case';
 
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+        $query['posts_per_page'] = 1;
+        $query['paged'] = $paged;
+
+
         // Meta query condition
         $query['meta_query']['relation'] = 'AND';
 

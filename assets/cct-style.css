@@ -67,6 +67,26 @@
     color: #1D2939;
 }
 
+.cct-pagination {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.cct-pagination a.page {
+    background-color: #FFF;
+    display: inline-block;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.cct-pagination span.page {
+    display: inline-block;
+    padding: 12px;
+}
+
 @media screen and (max-width: 1199px) {
     .cct-search-form {
         flex-direction: column;
