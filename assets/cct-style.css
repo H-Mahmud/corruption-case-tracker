@@ -105,6 +105,10 @@
         align-items: start;
         gap: 8px;
     }
+
+    .cct-search-result .case-card {
+        width: calc((100% - 20px) / 2);
+    }
 }
 
 @media screen and (max-width: 446px) {
@@ -112,5 +116,9 @@
         flex-direction: column;
         gap: 8px;
 
+    }
+
+    .cct-search-result .case-card {
+        width: 100%;
     }
 }
