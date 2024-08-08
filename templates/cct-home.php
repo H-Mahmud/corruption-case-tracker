@@ -88,7 +88,7 @@
                         <span class="status"><?php echo $status_label; ?></span>
                     </div>
                     <?php the_title('<h2 class="title"><a href="' . get_permalink() . '">', '</a></h2>'); ?>
-                    <div class="summary"><?php the_field('summary_of_the_case'); ?></div>
+                    <div class="summary"><?php the_field('nature_of_the_case'); ?></div>
                 </article>
                 <?php
             }
