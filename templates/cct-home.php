@@ -18,6 +18,7 @@
                 </select>
             </label>
             <label for="caseStatus">
+                Case Status
                 <select name="case_status" id="caseStatus">
                     <option value="all" selected>All Statuses</option>
                     <option value="alleged" selected>Alleged</option>
@@ -30,7 +31,7 @@
 
         <div class="search-input-group">
             <input type="search" placeholder="Search here...">
-            <button type="submit">Search</button>
+            <input class="search-btn" type="submit" value="Search">
         </div>
     </form>
 
