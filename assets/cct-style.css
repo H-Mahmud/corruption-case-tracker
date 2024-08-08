@@ -1,1 +1,48 @@
+.cct-home {
+    background: #F1F5F6;
 
+}
+
+.cct-search-result {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.case-card {
+    background-color: #FFF;
+    border-radius: 5px;
+    border-radius: 8px;
+    width: calc((100% - 40px) /3);
+    padding: 32px 24px;
+}
+
+.case-card .meta-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.case-card .meta-info .date {
+    color: #667085;
+
+}
+
+.case-card .meta-info .status {
+    background: #F1F5F6;
+    color: #1D2939;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.case-card .title a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 18px;
+    color: #1D2939;
+}
