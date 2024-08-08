@@ -1,33 +1,60 @@
 <div class="cct-home">
     <form method="get" class="cct-search-form">
         <div class="search-filter-group">
-            <label for="case-nature">Nature of the case
-                <select name="case-nature" id="case-nature">
-                    <option value="all" selected>All Nature</option>
-                    <option value="government">Government</option>
-                    <option value="individual">Individual</option>
+            <label for="sector_of_the_case">Sector of the case
+                <select name="sector_of_the_case" id="sector_of_the_case">
+                    <option value="">All Sector</option>
+                    <?php
+                    $sector_of_the_case_options = cct_get_field_options('sector_of_the_case');
+                    foreach ($sector_of_the_case_options as $key => $value) {
+                        if (isset($_GET['sector_of_the_case']) && $_GET['sector_of_the_case'] === $key) {
+                            echo '<option value="' . $key . '" selected>' . $value . '</option>';
+                        } else {
+                            echo '<option value="' . $key . '">' . $value . '</option>';
+                        }
+                    }
+                    ?>
                 </select>
             </label>
             <label for="jurisdiction">
                 Jurisdiction
                 <select name="jurisdiction" id="jurisdiction">
-                    <option value="all" selected>All Jurisdiction</option>
-                    <option value="lacc">LACC</option>
-                    <option value="lower_court">Lower Court</option>
-                    <option value="upper_court">Upper Court</option>
+                    <option value="">All Jurisdiction</option>
+                    <?php
+                    $jurisdiction_options = cct_get_field_options('jurisdiction');
+                    foreach ($jurisdiction_options as $key => $value) {
+                        if (isset($_GET['jurisdiction']) && $_GET['jurisdiction'] === $key) {
+                            echo '<option value="' . $key . '" selected>' . $value . '</option>';
+                        } else {
+                            echo '<option value="' . $key . '">' . $value . '</option>';
+                        }
+                    }
+                    ?>
                 </select>
             </label>
             <label for="caseStatus">
                 Case Status
                 <select name="case_status" id="caseStatus">
-                    <option value="all" selected>All Statuses</option>
-                    <option value="alleged" selected>Alleged</option>
-                    <option value="pending_investigation">Pending Investigation</option>
-                    <option value="under_investigation">Under Investigation</option>
-                    <option value="concluded">Concluded</option>
+                    <option value="">All Statuses</option>
+                    <?php
+                    $case_status_options = cct_get_field_options('case_status');
+                    foreach ($case_status_options as $key => $value) {
+                        if (isset($_GET['case_status']) && $_GET['case_status'] === $key) {
+                            echo '<option value="' . $key . '" selected>' . $value . '</option>';
+                        } else {
+                            echo '<option value="' . $key . '">' . $value . '</option>';
+                        }
+                    }
+                    ?>
                 </select>
             </label>
         </div>
+
+        <?php
+
+
+
+        ?>
 
         <div class="search-input-group">
             <input type="search" placeholder="Search here...">
@@ -37,11 +64,7 @@
 
     <div class="cct-search-result">
         <?php
-        $query = new WP_Query(
-            array(
-                'post_type' => 'case'
-            )
-        );
+        $query = get_cct_cases();
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
@@ -51,8 +74,10 @@
                     $status = $status_field['value'];
                     $status_label = $status_field['choices'][$status];
                 }
+
+
                 // echo "<pre>";
-                // var_dump($status_obj);
+                // var_dump(get_fields());
                 // echo '</pre>';
                 ?>
                 <article class="case-card">
