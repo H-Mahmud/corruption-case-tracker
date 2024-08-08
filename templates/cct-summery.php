@@ -55,8 +55,6 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
     ?>
 
     const datasets = <?php echo json_encode($datasets); ?>;
-    console.log(datasets);
-
 
     const Utils = {
         months: function (config) {
@@ -76,10 +74,7 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
 
     const labels = Utils.months({ count: 12 });
 
-
-    console.log(labels);
     const data = {
-        // labels: labels,
         datasets: datasets
     };
 
