@@ -254,6 +254,35 @@ if (!function_exists('cct_summery_cb')) {
     }
 }
 
+if (!function_exists('cct_details_cb')) {
+    add_shortcode('cct-details', 'cct_details_cb');
+    function cct_details_cb()
+    {
+        ob_start();
+
+        include (plugin_dir_path(__FILE__) . 'templates/cct-details.php');
+
+        $content = ob_get_contents();
+        ob_clean();
+
+        return $content;
+    }
+}
+
+
+function cct_case_properties($content)
+{
+    if (is_single() && 'case' == get_post_type()) {
+        $custom_content = '[cct-details]';
+        $custom_content .= $content;
+        return $custom_content;
+    } else {
+        return $content;
+    }
+}
+add_filter('the_content', 'cct_case_properties');
+
+
 
 if (!function_exists('cct_enqueues')) {
     add_action('wp_enqueue_scripts', 'cct_enqueues');
