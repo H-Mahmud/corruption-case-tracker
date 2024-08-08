@@ -57,7 +57,8 @@
         ?>
 
         <div class="search-input-group">
-            <input type="search" name="s" placeholder="Search here..." value="<?php the_search_query() ?>">
+            <input type="search" name="search" placeholder="Search here..."
+                value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
             <input class="search-btn" type="submit" value="Search">
         </div>
     </form>

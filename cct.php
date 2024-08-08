@@ -27,34 +27,77 @@ if (!function_exists('get_cct_cases')) {
 
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-        $query['posts_per_page'] = 1;
+        $query['posts_per_page'] = 10;
         $query['paged'] = $paged;
 
 
-        // Meta query condition
         $query['meta_query']['relation'] = 'AND';
+        // Meta query condition by condition
+        $meta_query_and = array('relation' => 'AND');
+        $meta_query_or = array('relation' => 'OR');
 
         if (isset($_GET['case_status']) && !empty($_GET['case_status'])) {
-            $case_nature['key'] = 'case_status';
-            $case_nature['value'] = $_GET['case_status'];
-            $case_nature['compare'] = '=';
-            $query['meta_query'][] = $case_nature;
+
+            $case_nature = array(
+                'key' => 'case_status',
+                'value' => $_GET['case_status'],
+                'compare' => '=',
+            );
+
+            array_push($meta_query_and, $case_nature);
         }
 
 
         if (isset($_GET['jurisdiction']) && !empty($_GET['jurisdiction'])) {
-            $jurisdiction['key'] = 'jurisdiction';
-            $jurisdiction['value'] = $_GET['jurisdiction'];
-            $jurisdiction['compare'] = '=';
-            $query['meta_query'][] = $jurisdiction;
+
+            $jurisdiction = array(
+                'key' => 'jurisdiction',
+                'value' => $_GET['jurisdiction'],
+                'compare' => '=',
+            );
+
+            array_push($meta_query_and, $jurisdiction);
         }
 
         if (isset($_GET['sector_of_the_case']) && !empty($_GET['sector_of_the_case'])) {
-            $sector_of_the_case['key'] = 'sector_of_the_case';
-            $sector_of_the_case['value'] = $_GET['sector_of_the_case'];
-            $sector_of_the_case['compare'] = '=';
-            $query['meta_query'][] = $sector_of_the_case;
+
+            $sector_of_the_case = array(
+                'key' => 'sector_of_the_case',
+                'value' => $_GET['sector_of_the_case'],
+                'compare' => '=',
+            );
+
+            array_push($meta_query_and, $sector_of_the_case);
         }
+
+
+        if (isset($_GET['search']) && !empty($_GET['search'])) {
+            $query['s'] = $_GET['search'];
+
+            $nature_of_the_case = array(
+                'key' => 'nature_of_the_case',
+                'value' => $_GET['search'],
+                'compare' => 'LIKE',
+            );
+
+            $summary_of_the_case = array(
+                'key' => 'summary_of_the_case',
+                'value' => $_GET['search'],
+                'compare' => 'LIKE',
+            );
+
+            // $query['cct-search'] = true;
+
+
+            array_push($meta_query_or, $nature_of_the_case, $summary_of_the_case);
+            // array_push($meta_query_or, $summary_of_the_case);
+
+        }
+
+        $query['meta_query'][] = $meta_query_and;
+        // $query['meta_query'][] = $meta_query_or;
+        // $query['meta_query'][] = $meta_query_or;
+
 
 
         // echo "<pre>";
@@ -64,6 +107,26 @@ if (!function_exists('get_cct_cases')) {
         return new WP_Query($query);
     }
 }
+
+
+function cct_cases_where($where, $query)
+{
+    global $wpdb;
+
+    // return $where;
+
+    if ($query->get('cct-search') && !is_admin()) {
+        // Search term
+        $search_term = $query->get('search');
+
+        // Add the OR conditions to the WHERE clause
+        $where .= " OR ({$wpdb->postmeta}.meta_key = 'nature_of_the_case' AND {$wpdb->postmeta}.meta_value LIKE '%" . esc_sql($wpdb->esc_like($search_term)) . "%')";
+        $where .= " OR ({$wpdb->postmeta}.meta_key = 'summary_of_the_case' AND {$wpdb->postmeta}.meta_value LIKE '%" . esc_sql($wpdb->esc_like($search_term)) . "%')";
+    }
+
+    return $where;
+}
+add_filter('posts_where', 'cct_cases_where', 10, 2);
 
 if (!function_exists('cct_get_field_options')) {
     function cct_get_field_options($field_key)
