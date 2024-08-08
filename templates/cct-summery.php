@@ -1,3 +1,19 @@
+<?php
+$year = date('Y');
+if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_year'] < 2099) {
+    $year = intval($_GET['submit_year']);
+}
+?>
+
+<form method="get" class="summery-filter-form">
+    <label for="year">
+        Filter By year
+        <input name="submit_year" type="number" min="1900" max="2099" step="1" value="<?php echo $year; ?>" />
+    </label>
+    <button class="filter-btn" type="Submit">Filter</button>
+
+</form>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
@@ -5,16 +21,14 @@
 <script>
 
     <?php
-
-    // get_cases_count_by_month(2024);
-    
     $case_status = cct_get_field_options('case_status');
 
+
     $datasets = [];
-    foreach ($case_status as $value => $value) {
+    foreach ($case_status as $key => $value) {
 
 
-        $data = get_cases_count_by_month(2024, $value);
+        $data = get_cases_count_by_month($year, $key);
 
         $bg_colors = [];
         $border_colors = [];

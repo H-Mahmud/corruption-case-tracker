@@ -87,6 +87,18 @@
     padding: 12px;
 }
 
+.summery-filter-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    max-width: 450px;
+}
+
+.summery-filter-form .filter-btn {
+    height: fit-content;
+}
+
 @media screen and (max-width: 1199px) {
     .cct-search-form {
         flex-direction: column;
