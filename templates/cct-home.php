@@ -84,7 +84,7 @@
                 ?>
                 <article class="case-card">
                     <div class="meta-info">
-                        <span class="date"><?php the_field('submitted_at'); ?></span>
+                        <span class="date"><?php the_date(); ?></span>
                         <span class="status"><?php echo $status_label; ?></span>
                     </div>
                     <?php the_title('<h2 class="title"><a href="' . get_permalink() . '">', '</a></h2>'); ?>
