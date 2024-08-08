@@ -154,6 +154,22 @@ if (!function_exists('cct_home_cb')) {
     }
 }
 
+if (!function_exists('cct_summery_cb')) {
+    add_shortcode('cct-summery', 'cct_summery_cb');
+    function cct_summery_cb()
+    {
+        ob_start();
+
+        include (plugin_dir_path(__FILE__) . 'templates/cct-summery.php');
+
+        $content = ob_get_contents();
+        ob_clean();
+
+        return $content;
+    }
+}
+
+
 if (!function_exists('cct_enqueues')) {
     add_action('wp_enqueue_scripts', 'cct_enqueues');
     function cct_enqueues()
