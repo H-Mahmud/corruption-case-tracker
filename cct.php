@@ -72,18 +72,18 @@ if (!function_exists('get_cct_cases')) {
         }
 
 
-        if (isset($_GET['search']) && !empty($_GET['search'])) {
-            $query['s'] = $_GET['search'];
+        if (isset($_GET['cct-search']) && !empty($_GET['cct-search'])) {
+            $query['s'] = $_GET['cct-search'];
 
             $nature_of_the_case = array(
                 'key' => 'nature_of_the_case',
-                'value' => $_GET['search'],
+                'value' => $_GET['cct-search'],
                 'compare' => 'LIKE',
             );
 
             $summary_of_the_case = array(
                 'key' => 'summary_of_the_case',
-                'value' => $_GET['search'],
+                'value' => $_GET['cct-search'],
                 'compare' => 'LIKE',
             );
 
