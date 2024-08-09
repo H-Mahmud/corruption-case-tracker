@@ -29,11 +29,11 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
 
 
         $data = get_cases_count_by_month($year, $key);
+        $color_value = cct_get_rand_rgb_color_value();
 
         $bg_colors = [];
         $border_colors = [];
         for ($i = 0; $i < 12; $i++) {
-            $color_value = cct_get_rand_rgb_color_value();
             array_push($bg_colors, "rgba($color_value, 0.2)");
             array_push($border_colors, "rgb($color_value)");
         }
