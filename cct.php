@@ -17,6 +17,9 @@
 defined("ABSPATH") or exit("No direct script access allowed");
 
 
+include (plugin_dir_path(__FILE__) . 'inc/class-case-query.php');
+
+
 if (!function_exists('get_cct_cases')) {
     function get_cct_cases()
     {
@@ -73,7 +76,7 @@ if (!function_exists('get_cct_cases')) {
 
 
         if (isset($_GET['cct-search']) && !empty($_GET['cct-search'])) {
-            $query['s'] = $_GET['cct-search'];
+            // $query['s'] = $_GET['cct-search'];
 
             $nature_of_the_case = array(
                 'key' => 'nature_of_the_case',
@@ -87,16 +90,15 @@ if (!function_exists('get_cct_cases')) {
                 'compare' => 'LIKE',
             );
 
+            $query['cct-search'] = $_GET['cct-search'];
             // $query['cct-search'] = true;
 
 
             array_push($meta_query_or, $nature_of_the_case, $summary_of_the_case);
-            // array_push($meta_query_or, $summary_of_the_case);
 
         }
 
         $query['meta_query'][] = $meta_query_and;
-        // $query['meta_query'][] = $meta_query_or;
         // $query['meta_query'][] = $meta_query_or;
 
 
@@ -110,24 +112,6 @@ if (!function_exists('get_cct_cases')) {
 }
 
 
-function cct_cases_where($where, $query)
-{
-    global $wpdb;
-
-    // return $where;
-
-    if ($query->get('cct-search') && !is_admin()) {
-        // Search term
-        $search_term = $query->get('search');
-
-        // Add the OR conditions to the WHERE clause
-        $where .= " OR ({$wpdb->postmeta}.meta_key = 'nature_of_the_case' AND {$wpdb->postmeta}.meta_value LIKE '%" . esc_sql($wpdb->esc_like($search_term)) . "%')";
-        $where .= " OR ({$wpdb->postmeta}.meta_key = 'summary_of_the_case' AND {$wpdb->postmeta}.meta_value LIKE '%" . esc_sql($wpdb->esc_like($search_term)) . "%')";
-    }
-
-    return $where;
-}
-add_filter('posts_where', 'cct_cases_where', 10, 2);
 
 if (!function_exists('cct_get_field_options')) {
     function cct_get_field_options($field_key)
