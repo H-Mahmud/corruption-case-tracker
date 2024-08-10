@@ -63,7 +63,9 @@
         </div>
     </form>
     <?php
-    $query = get_cct_cases();
+    $case_query = new CCT_Case_Query();
+    $query = $case_query->get_query();
+
     if ($query->have_posts()) { ?>
 
         <div class="cct-search-result">
