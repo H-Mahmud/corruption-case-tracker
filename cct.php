@@ -17,7 +17,7 @@
 defined("ABSPATH") or exit("No direct script access allowed");
 
 
-include (plugin_dir_path(__FILE__) . 'inc/class-case-query.php');
+include (plugin_dir_path(__FILE__) . 'inc/class-case-filter.php');
 
 
 if (!function_exists('get_cct_cases')) {
@@ -99,6 +99,7 @@ if (!function_exists('get_cct_cases')) {
         }
 
         $query['meta_query'][] = $meta_query_and;
+        $query['meta_query'][] = $meta_query_or;
         // $query['meta_query'][] = $meta_query_or;
 
 
