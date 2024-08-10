@@ -14,8 +14,6 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
 
 </form>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
 
 <script>
