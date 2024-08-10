@@ -21,15 +21,15 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
 <script>
 
     <?php
-    $case_status = cct_get_field_options('case_status');
+    $case_status = CCT_Utils::get_field_options('case_status');
 
 
     $datasets = [];
     foreach ($case_status as $key => $value) {
 
 
-        $data = get_cases_count_by_month($year, $key);
-        $color_value = cct_get_rand_rgb_color_value();
+        $data = CCT_Utils::get_cases_count_by_month($year, $key);
+        $color_value = CCT_Utils::get_rand_rgb_value();
 
         $bg_colors = [];
         $border_colors = [];

@@ -5,7 +5,7 @@
                 <select name="sector_of_the_case" id="sector_of_the_case">
                     <option value="">All Sector</option>
                     <?php
-                    $sector_of_the_case_options = cct_get_field_options('sector_of_the_case');
+                    $sector_of_the_case_options = CCT_Utils::get_field_options('sector_of_the_case');
                     foreach ($sector_of_the_case_options as $key => $value) {
                         if (isset($_GET['sector_of_the_case']) && $_GET['sector_of_the_case'] === $key) {
                             echo '<option value="' . $key . '" selected>' . $value . '</option>';
@@ -21,7 +21,7 @@
                 <select name="jurisdiction" id="jurisdiction">
                     <option value="">All Jurisdiction</option>
                     <?php
-                    $jurisdiction_options = cct_get_field_options('jurisdiction');
+                    $jurisdiction_options = CCT_Utils::get_field_options('jurisdiction');
                     foreach ($jurisdiction_options as $key => $value) {
                         if (isset($_GET['jurisdiction']) && $_GET['jurisdiction'] === $key) {
                             echo '<option value="' . $key . '" selected>' . $value . '</option>';
@@ -37,7 +37,7 @@
                 <select name="case_status" id="caseStatus">
                     <option value="">All Statuses</option>
                     <?php
-                    $case_status_options = cct_get_field_options('case_status');
+                    $case_status_options = CCT_Utils::get_field_options('case_status');
                     foreach ($case_status_options as $key => $value) {
                         if (isset($_GET['case_status']) && $_GET['case_status'] === $key) {
                             echo '<option value="' . $key . '" selected>' . $value . '</option>';
@@ -49,12 +49,6 @@
                 </select>
             </label>
         </div>
-
-        <?php
-
-
-
-        ?>
 
         <div class="search-input-group">
             <input type="search" name="cct-search" placeholder="Search here..."
