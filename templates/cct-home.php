@@ -73,16 +73,12 @@
                     $status_label = $status_field['choices'][$status];
                 }
 
-
-                // echo "<pre>";
-                // var_dump(get_fields());
-                // echo '</pre>';
                 ?>
                 <article class="case-card">
                     <div class="meta-info">
                         <span class="date"><?php the_date(); ?></span>
-                        <span class="status"
-                            style="background-color: <?php echo CCT_Utils::get_status_color($status_field['value']); ?>A4;"><?php echo $status_label; ?></span>
+                        <span class="status" <?php $status_color = CCT_Utils::get_status_color($status_field['value']); ?>
+                            style="background-color: <?php echo $status_color; ?>33;"><?php echo $status_label; ?></span>
                     </div>
                     <?php the_title('<h2 class="title"><a href="' . get_permalink() . '">', '</a></h2>'); ?>
                     <div class="summary"><?php the_field('nature_of_the_case'); ?></div>
