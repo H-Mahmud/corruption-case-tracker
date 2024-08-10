@@ -52,9 +52,6 @@ if (!class_exists('CCT_Case_Query')) {
 
             $query['meta_query'][] = $meta_query_filter;
             $query['meta_query'][] = $meta_query_search;
-            // echo '<pre>';
-            // var_dump($query);
-            // echo '</pre>';
 
             return new WP_Query($query);
 
