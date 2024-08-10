@@ -27,13 +27,13 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
 
 
         $data = CCT_Utils::get_cases_count_by_month($year, $key);
-        $color_value = CCT_Utils::get_rand_rgb_value();
+        $color_value = CCT_Utils::get_status_color($key);
 
         $bg_colors = [];
         $border_colors = [];
         for ($i = 0; $i < 12; $i++) {
-            array_push($bg_colors, "rgba($color_value, 0.2)");
-            array_push($border_colors, "rgb($color_value)");
+            array_push($bg_colors, $color_value . '33');
+            array_push($border_colors, $color_value);
         }
 
         $dataset = array(
