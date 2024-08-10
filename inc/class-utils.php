@@ -109,5 +109,18 @@ if (!class_exists('CCT_Utils')) {
 
             return $month_counts;
         }
+
+
+        public static function get_status_color($status)
+        {
+            $statuses_color = [
+                'alleged' => '#FF5733',             // Bright Red
+                'pending_investigation' => '#33FF57', // Bright Green
+                'under_investigation' => '#3357FF',   // Bright Blue
+                'concluded' => '#FF33A8'             // Bright Pink
+            ];
+
+            return $statuses_color[$status];
+        }
     }
 }
