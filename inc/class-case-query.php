@@ -25,7 +25,6 @@ if (!class_exists('CCT_Case_Filter')) {
         }
 
 
-
         /**
          * Summary of cases_where
          * 
@@ -39,19 +38,21 @@ if (!class_exists('CCT_Case_Filter')) {
         {
             global $wpdb;
 
-            // return $where;
-
             if ($query->get('cct-search') && !is_admin()) {
-                // Search term
-                $search_term = $query->get('cct-search');
 
-                // Add the OR conditions to the WHERE clause
-                $where .= " OR ({$wpdb->postmeta}.meta_key = 'nature_of_the_case' AND {$wpdb->postmeta}.meta_value LIKE '%" . esc_sql($wpdb->esc_like($search_term)) . "%')";
-                $where .= " OR ({$wpdb->postmeta}.meta_key = 'summary_of_the_case' AND {$wpdb->postmeta}.meta_value LIKE '%" . esc_sql($wpdb->esc_like($search_term)) . "%')";
+                // Search term
+                $search_term = $wpdb->esc_like($query->get('cct-search'));
+
+                $where .= $wpdb->prepare(
+                    " OR ( {$wpdb->posts}.post_title LIKE '%%%s%%' ) ",
+                    $search_term
+                );
+
             }
 
             return $where;
         }
+
 
         /**
          * Summary of getInstance
