@@ -38,6 +38,9 @@ if (!class_exists('CCT_Case_Query')) {
             $section_filter = $this->get_filter('sector_of_the_case');
             $section_filter && array_push($meta_query_filter, $section_filter);
 
+            $level_of_government_filter = $this->get_filter('level_of_government');
+            $level_of_government_filter && array_push($meta_query_filter, $level_of_government_filter);
+
 
             // Search Query on Post Meta
             $meta_query_search = array('relation' => 'OR');
