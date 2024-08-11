@@ -115,9 +115,14 @@ if (!class_exists('CCT_Utils')) {
         {
             $statuses_color = [
                 'alleged' => '#FF5733',             // Bright Red
-                'pending_investigation' => '#33FF57', // Bright Green
+                'pending_investigation' => '#ffc552', // Bright Orange
                 'under_investigation' => '#3357FF',   // Bright Blue
-                'concluded' => '#FF33A8'             // Bright Pink
+                'indictment_drawn' => '#33C3FF', // Magenta
+                'in_court' => '#C70039', // Rich Red
+                'concluded' => '#52ff63',             // Bright Green
+                'concluded_conviction' => '#900C3F', // Deep Maroon
+                'concluded_not_guilty' => '#3498DB', // Bright Blue
+                'on_appeal_to_supreme_court' => '#8E44AD' // Strong Purple
             ];
 
             return $statuses_color[$status];
