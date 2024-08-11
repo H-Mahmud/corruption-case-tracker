@@ -1,4 +1,4 @@
-<table>
+<table class="cct-details">
     <tr>
         <th>Case Title</th>
         <td><?php the_title(); ?></td>
@@ -18,6 +18,19 @@
             ?>
         </td>
     </tr>
+    <?php
+    if (get_field('is_the_case_delayed')) { ?>
+        <tr>
+            <th>Delay Duration</th>
+            <td class="delay-status">
+                <?php
+                include_once (__DIR__ . '/delay-duration.php');
+                ?>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
     <tr>
         <th>Jurisdiction</th>
         <td>
