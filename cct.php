@@ -18,6 +18,7 @@ defined("ABSPATH") or exit("No direct script access allowed");
 
 include (plugin_dir_path(__FILE__) . 'inc/class-case-query.php');
 include (plugin_dir_path(__FILE__) . 'inc/class-utils.php');
+include_once (plugin_dir_path(__FILE__) . 'inc/case-cct.php');
 
 if (!function_exists('cct_home_cb')) {
     add_shortcode('cct-home', 'cct_home_cb');
