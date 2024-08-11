@@ -30,10 +30,6 @@
         </td>
     </tr>
     <tr>
-        <th>Nature of the Case</th>
-        <td> <?php the_field('nature_of_the_case'); ?> </td>
-    </tr>
-    <tr>
         <th>Sector of the Case</th>
         <td>
             <?php
@@ -58,5 +54,9 @@
     <tr>
         <th>Summary of the Case</th>
         <td> <?php the_field('summary_of_the_case'); ?> </td>
+    </tr>
+    <tr>
+        <th>Nature of the Case</th>
+        <td> <?php the_field('nature_of_the_case'); ?> </td>
     </tr>
 </table>
