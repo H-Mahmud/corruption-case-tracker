@@ -1,7 +1,8 @@
 .cct-search-form {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: end;
+    gap: 24px;
     margin-bottom: 24px;
     padding: 16px 0;
 }
@@ -19,8 +20,17 @@
     justify-content: flex-end;
 }
 
+.cct-search-form .search-input-group .search-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 .cct-search-form .search-input-group .search-btn {
     height: fit-content;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .cct-search-result {

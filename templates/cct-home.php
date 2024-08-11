@@ -69,7 +69,7 @@
         </div>
 
         <div class="search-input-group">
-            <input type="search" name="cct-search" placeholder="Search here..."
+            <input class="search-input" type="search" name="cct-search" placeholder="Search here..."
                 value="<?php echo isset($_GET['cct-search']) ? $_GET['cct-search'] : '' ?>">
             <input class="search-btn" type="submit" value="Search">
         </div>
