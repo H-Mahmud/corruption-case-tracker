@@ -48,6 +48,24 @@
                     ?>
                 </select>
             </label>
+
+            <label for="levelOfGovernment">
+                Case Status
+                <select name="level_of_government" id="levelOfGovernment">
+                    <option value="">All Levels</option>
+                    <?php
+                    $level_of_government_options = CCT_Utils::get_field_options('level_of_government');
+                    foreach ($level_of_government_options as $key => $value) {
+                        if (isset($_GET['level_of_government']) && $_GET['level_of_government'] === $key) {
+                            echo '<option value="' . $key . '" selected>' . $value . '</option>';
+                        } else {
+                            echo '<option value="' . $key . '">' . $value . '</option>';
+                        }
+                    }
+                    ?>
+                </select>
+            </label>
+
         </div>
 
         <div class="search-input-group">
