@@ -5,7 +5,7 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
 }
 ?>
 
-<form method="get" class="summery-filter-form">
+<form method="get" class="summary-filter-form">
     <label for="year">
         Filter By year
         <input name="submit_year" type="number" min="1900" max="2099" step="1" value="<?php echo $year; ?>" />

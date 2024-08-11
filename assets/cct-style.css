@@ -87,7 +87,7 @@
     padding: 12px;
 }
 
-.summery-filter-form {
+.summary-filter-form {
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -95,7 +95,7 @@
     max-width: 450px;
 }
 
-.summery-filter-form .filter-btn {
+.summary-filter-form .filter-btn {
     height: fit-content;
 }
 

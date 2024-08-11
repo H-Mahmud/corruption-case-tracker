@@ -34,13 +34,13 @@ if (!function_exists('cct_home_cb')) {
     }
 }
 
-if (!function_exists('cct_summery_cb')) {
-    add_shortcode('cct-summery', 'cct_summery_cb');
-    function cct_summery_cb()
+if (!function_exists('cct_summary_cb')) {
+    add_shortcode('cct-summary', 'cct_summary_cb');
+    function cct_summary_cb()
     {
         ob_start();
 
-        include (plugin_dir_path(__FILE__) . 'templates/cct-summery.php');
+        include (plugin_dir_path(__FILE__) . 'templates/cct-summary.php');
 
         $content = ob_get_contents();
         ob_clean();
