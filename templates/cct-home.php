@@ -50,7 +50,7 @@
             </label>
 
             <label for="levelOfGovernment">
-                Case Status
+                Government Level
                 <select name="level_of_government" id="levelOfGovernment">
                     <option value="">All Levels</option>
                     <?php
