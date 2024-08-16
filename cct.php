@@ -6,8 +6,8 @@
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
- * Author:            Dream Developer
- * Author URI:        https://dreamdeveloper.org/
+ * Author:            Mahmudul Hasan
+ * Author URI:        https://imahmud.com/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       cct
@@ -16,10 +16,10 @@
  */
 defined("ABSPATH") or exit("No direct script access allowed");
 
-include_once (plugin_dir_path(__FILE__) . 'inc/class-case-query.php');
-include_once (plugin_dir_path(__FILE__) . 'inc/class-utils.php');
-include_once (plugin_dir_path(__FILE__) . 'inc/case-cct.php');
-include_once (plugin_dir_path(__FILE__) . 'inc/case-cct-fields.php');
+include_once(plugin_dir_path(__FILE__) . 'inc/class-case-query.php');
+include_once(plugin_dir_path(__FILE__) . 'inc/class-utils.php');
+include_once(plugin_dir_path(__FILE__) . 'inc/case-cct.php');
+include_once(plugin_dir_path(__FILE__) . 'inc/case-cct-fields.php');
 
 
 if (!function_exists('cct_home_cb')) {
@@ -28,7 +28,7 @@ if (!function_exists('cct_home_cb')) {
     {
         ob_start();
 
-        include (plugin_dir_path(__FILE__) . 'templates/cct-home.php');
+        include(plugin_dir_path(__FILE__) . 'templates/cct-home.php');
 
         $content = ob_get_contents();
         ob_clean();
@@ -43,7 +43,7 @@ if (!function_exists('cct_summary_cb')) {
     {
         ob_start();
 
-        include (plugin_dir_path(__FILE__) . 'templates/cct-summary.php');
+        include(plugin_dir_path(__FILE__) . 'templates/cct-summary.php');
 
         $content = ob_get_contents();
         ob_clean();
@@ -58,7 +58,7 @@ if (!function_exists('cct_details_cb')) {
     {
         ob_start();
 
-        include (plugin_dir_path(__FILE__) . 'templates/cct-details.php');
+        include(plugin_dir_path(__FILE__) . 'templates/cct-details.php');
 
         $content = ob_get_contents();
         ob_clean();
