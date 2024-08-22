@@ -202,7 +202,7 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66b870321a26d',
-                    'label' => 'Status Alleged Duration',
+                    'label' => 'Duration at Alleged',
                     'name' => 'alleged',
                     'aria-label' => '',
                     'type' => 'text',
@@ -230,7 +230,7 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66b85e1527002',
-                    'label' => 'Status Pending Investigation Duration',
+                    'label' => 'Duration at Pending Investigation',
                     'name' => 'pending_investigation',
                     'aria-label' => '',
                     'type' => 'text',
@@ -258,7 +258,7 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66b870f6359aa',
-                    'label' => 'Status Under Investigation Duration',
+                    'label' => 'Duration at Under Investigation',
                     'name' => 'under_investigation',
                     'aria-label' => '',
                     'type' => 'text',
@@ -286,7 +286,7 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66b8712d359ab',
-                    'label' => 'Status Indictment Drawn Duration',
+                    'label' => 'Duration at Indictment Drawn',
                     'name' => 'indictment_drawn',
                     'aria-label' => '',
                     'type' => 'text',
@@ -314,7 +314,7 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66b87153359ac',
-                    'label' => 'Status In Court Duration',
+                    'label' => 'Duration at In Court',
                     'name' => 'in_court',
                     'aria-label' => '',
                     'type' => 'text',
@@ -342,7 +342,7 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66b8717d359ad',
-                    'label' => 'Status Concluded Duration',
+                    'label' => 'Duration at Concluded',
                     'name' => 'concluded',
                     'aria-label' => '',
                     'type' => 'text',
@@ -370,7 +370,7 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66b87199359ae',
-                    'label' => 'Status Concluded: Conviction Duration',
+                    'label' => 'Duration at Concluded: Conviction',
                     'name' => 'concluded_conviction',
                     'aria-label' => '',
                     'type' => 'text',
@@ -398,7 +398,7 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66b871b8359af',
-                    'label' => 'Status Concluded: Not Guilty Duration',
+                    'label' => 'Duration at Concluded: Not Guilty',
                     'name' => 'concluded_not_guilty',
                     'aria-label' => '',
                     'type' => 'text',
@@ -426,7 +426,7 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66b871d4359b0',
-                    'label' => 'Status On Appeal to Supreme Court Duration',
+                    'label' => 'Duration at On Appeal to Supreme Court',
                     'name' => 'on_appeal_to_supreme_court',
                     'aria-label' => '',
                     'type' => 'text',
@@ -471,7 +471,8 @@ function cct_case_data_fields()
             'active' => true,
             'description' => '',
             'show_in_rest' => 0,
-        ));
+        )
+    );
 }
 ;
 add_action('acf/include_fields', 'cct_case_data_fields');
