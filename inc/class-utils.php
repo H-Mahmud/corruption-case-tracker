@@ -122,7 +122,11 @@ if (!class_exists('CCT_Utils')) {
                 'concluded' => '#52ff63',             // Bright Green
                 'concluded_conviction' => '#900C3F', // Deep Maroon
                 'concluded_not_guilty' => '#3498DB', // Bright Blue
-                'on_appeal_to_supreme_court' => '#8E44AD' // Strong Purple
+                'on_appeal_to_supreme_court' => '#8E44AD', // Strong Purple
+                'private_sector' => '#FFB533', // Warm Orange
+                'civil_society' => '#2E86C1',  // Vibrant Blue
+                'telecommunications' => '#2980B9', // Deep Sky Blue
+                'non_profit' => '#A569BD', // Light Purple
             ];
 
             return $statuses_color[$status];
