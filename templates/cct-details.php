@@ -19,12 +19,20 @@
         </td>
     </tr>
     <?php
+    if (get_field('year_of_conclusion')) { ?>
+        <tr>
+            <th>Year of Conclusion</th>
+            <td><?php the_field('year_of_conclusion'); ?></td>
+        </tr>
+    <?php }
+    ; ?>
+    <?php
     if (get_field('is_the_case_delayed')) { ?>
         <tr>
             <th>Delay Duration</th>
             <td class="delay-status">
                 <?php
-                include_once (__DIR__ . '/delay-duration.php');
+                include_once(__DIR__ . '/delay-duration.php');
                 ?>
             </td>
         </tr>
