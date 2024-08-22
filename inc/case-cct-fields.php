@@ -48,6 +48,41 @@ function cct_case_data_fields()
                     'placeholder' => '',
                 ),
                 array(
+                    'key' => 'field_66c6c28b6bb2e',
+                    'label' => 'Year of conclusion',
+                    'name' => 'year_of_conclusion',
+                    'aria-label' => '',
+                    'type' => 'text',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_66a5d36961b65',
+                                'operator' => '==',
+                                'value' => 'concluded',
+                            ),
+                        ),
+                        array(
+                            array(
+                                'field' => 'field_66a5d36961b65',
+                                'operator' => '==',
+                                'value' => 'concluded_not_guilty',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'maxlength' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                ),
+                array(
                     'key' => 'field_66a5d571e13bb',
                     'label' => 'Jurisdiction',
                     'name' => 'jurisdiction',
