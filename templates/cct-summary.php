@@ -5,6 +5,21 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
 }
 ?>
 
+<form method="get" style="max-width: 420px; margin-left: 0;">
+    <label for="summaryBy"> Summary By</label>
+
+    <select name="summary_by" id="summaryBy">
+        <option value="year">Years</option>
+        <option value="months">Months</option>
+        <option value="sectors">Sectors</option>
+        <option value="statuses">Statuses</option>
+        <option value="governments">Governments</option>
+        <option value="jurisdictions">Jurisdictions</option>
+        <option value="average_cases_delay_durations">Average Cases Delay Durations</option>
+    </select>
+    <button class="filter-btn" type="Submit">Filter</button>
+</form>
+
 <form method="get" class="summary-filter-form">
     <label for="year">
         Filter By year
