@@ -10,8 +10,12 @@
         <option value="statuses" <?php selected($summary_by, 'statuses'); ?>>Statuses</option>
         <option value="governments" <?php selected($summary_by, 'governments'); ?>>Governments</option>
         <option value="jurisdictions" <?php selected($summary_by, 'jurisdictions'); ?>>Jurisdictions</option>
+        <?php
+        /*
         <option value="average_cases_delay_durations" <?php selected($summary_by, 'average_cases_delay_durations'); ?>>
             Average Cases Delay Durations</option>
+            */
+        ?>
     </select>
     <button class="filter-btn" type="Submit">Filter</button>
 </form>
