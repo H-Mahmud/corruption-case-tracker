@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') || exit();
 
-if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'years')
+if (isset($_GET['summary_by']) && $_GET['summary_by'] !== 'years')
     return;
 ?>
 
