@@ -56,13 +56,12 @@ if (!class_exists('CCT_Utils')) {
         /**
          * Summary of get_cases_count_by_month
          * 
-         * Cases count by month for a year selected by case status
+         * Cases count by month for a year selected
          * 
          * @param int $year full year
-         * @param string $status case status
          * @return array
          */
-        public static function get_cases_count_by_month($year, $status)
+        public static function get_cases_count_by_month($year)
         {
             global $wpdb;
 
@@ -72,19 +71,15 @@ if (!class_exists('CCT_Utils')) {
             COUNT(*) AS post_count 
         FROM 
             $wpdb->posts p 
-        INNER JOIN 
-            $wpdb->postmeta pm ON p.ID = pm.post_id 
         WHERE 
             p.post_type = 'case' 
             AND p.post_status = 'publish' 
-            AND pm.meta_key = 'case_status' 
-            AND pm.meta_value = '%s' 
             AND YEAR(p.post_date) = %d 
         GROUP BY 
             MONTH(p.post_date)
         ORDER BY 
             MONTH(p.post_date)
-    ", $status, $year), OBJECT_K);
+    ", $year), OBJECT_K);
 
             $months = [
                 'January',

@@ -1,9 +1,4 @@
-<?php
-$year = date('Y');
-if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_year'] < 2099) {
-    $year = intval($_GET['submit_year']);
-}
-?>
+<?php defined('ABSPATH') || exit(); ?>
 
 <form method="get" style="max-width: 420px; margin-left: 0;">
     <label for="summaryBy"> Summary By</label>
