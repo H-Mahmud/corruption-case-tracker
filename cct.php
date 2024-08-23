@@ -87,6 +87,6 @@ if (!function_exists('cct_enqueues')) {
     function cct_enqueues()
     {
         wp_enqueue_style('cct-style', plugin_dir_url(__FILE__) . 'assets/cct-style.css', [], '1.0.0');
-        wp_enqueue_script('cct-script', plugin_dir_url(__FILE__) . 'assets/chart.min.js', [], '4.4.3');
+        wp_enqueue_script('cct-script', plugin_dir_url(__FILE__) . 'assets/chart.min.js', ['jquery'], '4.4.3');
     }
 }
