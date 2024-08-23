@@ -16,6 +16,8 @@
  */
 defined("ABSPATH") or exit("No direct script access allowed");
 
+defined('CCT_PLUGIN_DIR_PATH') || define('CCT_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
+
 include_once(plugin_dir_path(__FILE__) . 'inc/class-case-query.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-utils.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-case-analyze.php');
