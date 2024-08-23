@@ -18,6 +18,7 @@ defined("ABSPATH") or exit("No direct script access allowed");
 
 include_once(plugin_dir_path(__FILE__) . 'inc/class-case-query.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-utils.php');
+include_once(plugin_dir_path(__FILE__) . 'inc/class-case-analyze.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/case-cct.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/case-cct-fields.php');
 
