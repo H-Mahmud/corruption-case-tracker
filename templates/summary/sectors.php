@@ -9,11 +9,11 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'sectors')
 <script>
 
     <?php
-    $case_status = CCT_Utils::get_field_options('sector_of_the_case');
+    $case_sector = CCT_Utils::get_field_options('sector_of_the_case');
 
 
     $data = [];
-    foreach ($case_status as $key => $value) {
+    foreach ($case_sector as $key => $value) {
         $data[$value] = CCT_Utils::get_case_count_by_meta('sector_of_the_case', $key);
     }
 
