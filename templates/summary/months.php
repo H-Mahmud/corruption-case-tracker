@@ -8,10 +8,10 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
     $year = intval($_GET['submit_year']);
 }
 ?>
-<form method="get" class="summary-filter-by-months">
+<form method="get" class="filter-for-year">
     <input type="hidden" name="summary_by" value="months">
     <label for="year">
-        Filter By year
+        Filter by Year
         <input name="submit_year" type="number" min="1900" max="2099" step="1" value="<?php echo $year; ?>" />
     </label>
     <button class="filter-btn" type="Submit">Filter</button>

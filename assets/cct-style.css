@@ -119,15 +119,20 @@
     border-bottom-left-radius: 0;
 }
 
-.summary-filter-form-by-month {
+.filter-for-year {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-end;
     margin-bottom: 24px;
     max-width: 450px;
 }
 
-.summary-filter-form-by-month {
+.filter-for-year input[name="submit_year"] {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.filter-for-year .filter-btn {
     height: fit-content;
     padding-top: 12px;
     padding-bottom: 12px;
