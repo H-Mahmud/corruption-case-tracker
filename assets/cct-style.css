@@ -102,16 +102,40 @@
     justify-content: center;
     align-items: flex-end;
     margin-bottom: 24px;
-    max-width: 450px;
+    max-width: 450px !important;
+    margin-left: 0 !important;
+}
+
+.summary-filter-form #summaryBy {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .summary-filter-form .filter-btn {
     height: fit-content;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-.cct-details .delay-status {
-    /* display: flex; */
+.summary-filter-form-by-month {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    max-width: 450px;
 }
+
+.summary-filter-form-by-month {
+    height: fit-content;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
 
 .cct-details .delay-status span {
     display: inline-block;

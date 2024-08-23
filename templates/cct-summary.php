@@ -1,8 +1,7 @@
 <?php defined('ABSPATH') || exit(); ?>
 
-<form method="get" style="max-width: 420px; margin-left: 0;">
-    <label for="summaryBy"> Summary By</label>
-
+<label for="summaryBy">Summary By</label>
+<form method="get" class="summary-filter-form">
     <select name="summary_by" id="summaryBy">
         <?php $summary_by = isset($_GET['summary_by']) ? $_GET['summary_by'] : ''; ?>
         <option value="years" <?php selected($summary_by, 'years'); ?>>Years</option>
