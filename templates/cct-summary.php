@@ -25,4 +25,5 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/months.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/years.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/sectors.php'; ?>
+    <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/statuses.php'; ?>
 </div>
