@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') || exit(); ?>
 
-<label for="summaryBy">Summary By</label>
+<label for="summaryBy">Summary by</label>
 <form method="get" class="summary-filter-form">
     <select name="summary_by" id="summaryBy">
         <?php $summary_by = isset($_GET['summary_by']) ? $_GET['summary_by'] : ''; ?>
