@@ -9,13 +9,15 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
     <label for="summaryBy"> Summary By</label>
 
     <select name="summary_by" id="summaryBy">
-        <option value="year">Years</option>
-        <option value="months">Months</option>
-        <option value="sectors">Sectors</option>
-        <option value="statuses">Statuses</option>
-        <option value="governments">Governments</option>
-        <option value="jurisdictions">Jurisdictions</option>
-        <option value="average_cases_delay_durations">Average Cases Delay Durations</option>
+        <?php $summary_by = isset($_GET['summary_by']) ? $_GET['summary_by'] : ''; ?>
+        <option value="years" <?php selected($summary_by, 'years'); ?>>Years</option>
+        <option value="months" <?php selected($summary_by, 'months'); ?>>Months</option>
+        <option value="sectors" <?php selected($summary_by, 'sectors'); ?>>Sectors</option>
+        <option value="statuses" <?php selected($summary_by, 'statuses'); ?>>Statuses</option>
+        <option value="governments" <?php selected($summary_by, 'governments'); ?>>Governments</option>
+        <option value="jurisdictions" <?php selected($summary_by, 'jurisdictions'); ?>>Jurisdictions</option>
+        <option value="average_cases_delay_durations" <?php selected($summary_by, 'average_cases_delay_durations'); ?>>
+            Average Cases Delay Durations</option>
     </select>
     <button class="filter-btn" type="Submit">Filter</button>
 </form>
