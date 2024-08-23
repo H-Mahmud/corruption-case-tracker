@@ -131,5 +131,28 @@ if (!class_exists('CCT_Utils')) {
 
             return $statuses_color[$status];
         }
+
+        /**
+         * Get total case count by post meta key and value
+         * 
+         * @param string $meta_key
+         * @param string $meta_value
+         * @return int|mixed
+         */
+        public static function get_case_count_by_meta($meta_key, $meta_value)
+        {
+            $args = array(
+                'post_type' => 'case',
+                'meta_key' => $meta_key,
+                'meta_value' => $meta_value,
+                'posts_per_page' => -1,
+                'fields' => 'ids',
+            );
+
+            $query = new WP_Query($args);
+
+            return $query->found_posts;
+        }
+
     }
 }
