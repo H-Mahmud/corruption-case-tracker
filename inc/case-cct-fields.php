@@ -38,10 +38,6 @@ function cct_case_data_fields()
                         'concluded_conviction' => 'Concluded: Conviction',
                         'concluded_not_guilty' => 'Concluded: Not Guilty',
                         'on_appeal_to_supreme_court' => 'On Appeal to Supreme Court',
-                        'private_sector' => 'Private Sector',
-                        'civil_society' => 'Civil Society',
-                        'telecommunications' => 'Telecommunications',
-                        'non_profit' => 'Non-profit'
                     ),
                     'default_value' => 'alleged',
                     'return_format' => 'value',
@@ -163,6 +159,10 @@ function cct_case_data_fields()
                         'energy_and_environment' => 'Energy and Environment',
                         'industry_and_commerce' => 'Industry and Commerce',
                         'social_development_services' => 'Social Development Services',
+                        'private_sector' => 'Private Sector',
+                        'civil_society' => 'Civil Society',
+                        'telecommunications' => 'Telecommunications',
+                        'non_profit' => 'Non-profit'
                     ),
                     'default_value' => 'health',
                     'return_format' => 'value',
