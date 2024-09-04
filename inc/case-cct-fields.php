@@ -491,6 +491,81 @@ function cct_case_data_fields()
                     'prepend' => '',
                     'append' => '',
                 ),
+                array(
+                    'key' => 'field_66d82c35b0042',
+                    'label' => 'Concluded',
+                    'name' => 'concluded',
+                    'aria-label' => '',
+                    'type' => 'true_false',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'message' => '',
+                    'default_value' => 0,
+                    'allow_in_bindings' => 0,
+                    'ui' => 0,
+                    'ui_on_text' => '',
+                    'ui_off_text' => '',
+                ),
+                array(
+                    'key' => 'field_66d82c852304c',
+                    'label' => 'Start Date',
+                    'name' => 'start_date',
+                    'aria-label' => '',
+                    'type' => 'date_picker',
+                    'instructions' => '',
+                    'required' => 1,
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_66d82c35b0042',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'display_format' => 'd/m/Y',
+                    'return_format' => 'd/m/Y',
+                    'first_day' => 1,
+                    'allow_in_bindings' => 0,
+                ),
+                array(
+                    'key' => 'field_66d82d342304d',
+                    'label' => 'Concluded Date',
+                    'name' => 'concluded_date',
+                    'aria-label' => '',
+                    'type' => 'date_picker',
+                    'instructions' => '',
+                    'required' => 1,
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_66d82c35b0042',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'display_format' => 'd/m/Y',
+                    'return_format' => 'd/m/Y',
+                    'first_day' => 1,
+                    'allow_in_bindings' => 0,
+                ),
             ),
             'location' => array(
                 array(
@@ -515,4 +590,3 @@ function cct_case_data_fields()
 }
 ;
 add_action('acf/include_fields', 'cct_case_data_fields');
-
