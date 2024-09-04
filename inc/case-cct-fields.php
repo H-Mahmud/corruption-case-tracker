@@ -590,3 +590,58 @@ function cct_case_data_fields()
 }
 ;
 add_action('acf/include_fields', 'cct_case_data_fields');
+
+
+
+/**
+ * Save case concluded date data on a custom table table
+ * 
+ * @param mixed $post_id
+ * @return void
+ */
+function cct_concluded_data_sav($post_id)
+{
+    if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || !current_user_can('edit_post', $post_id))
+        return;
+
+    echo '<pre>';
+
+    if (isset($_POST['acf']) && isset($_POST['acf']['field_66d82c852304c'])) {
+        $date = DateTime::createFromFormat('Ymd', $_POST['acf']['field_66d82c852304c']);
+        $case_started = $date->format('Y-m-j');
+
+        cct_insert_case_date_data($post_id, 'case_started', $case_started);
+    }
+
+
+    if (isset($_POST['acf']) && isset($_POST['acf']['field_66d82d342304d'])) {
+        $date = DateTime::createFromFormat('Ymd', $_POST['acf']['field_66d82d342304d']);
+        $case_concluded = $date->format('Y-m-j');
+
+        cct_insert_case_date_data($post_id, 'case_concluded', $case_concluded);
+    }
+
+}
+add_action('save_post', 'cct_concluded_data_sav');
+
+
+function cct_insert_case_date_data($post_id, $key, $value)
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'case_date_data';
+
+    $data = array(
+        'post_id' => $post_id,
+        'key' => $key,
+        'value' => $value,
+    );
+
+    $format = array(
+        '%d',
+        '%s',
+        '%s',
+    );
+
+    $wpdb->insert($table_name, $data, $format);
+    return $wpdb->insert_id;
+}
