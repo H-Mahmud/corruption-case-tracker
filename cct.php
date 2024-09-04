@@ -18,6 +18,33 @@ defined("ABSPATH") or exit("No direct script access allowed");
 
 defined('CCT_PLUGIN_DIR_PATH') || define('CCT_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
 
+function cct_create_case_date_data_table()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'case_date_data';
+
+    if ($wpdb->get_var("SHOW TABLES LIKE '{$table_name}'") != $table_name) {
+        $charset_collate = $wpdb->get_charset_collate();
+
+        $sql = "CREATE TABLE $table_name (
+            id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+            post_id bigint(20) unsigned NOT NULL,
+            `key` varchar(255) NOT NULL,
+            `value` datetime NOT NULL,
+            PRIMARY KEY (id),
+            KEY post_id (post_id),
+            KEY `key` (`key`),
+            KEY `value` (`value`)
+        ) $charset_collate;";
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+    }
+}
+
+register_activation_hook(__FILE__, 'cct_create_case_date_data_table');
+
+
 include_once(plugin_dir_path(__FILE__) . 'inc/class-case-query.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-utils.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-case-analyze.php');
