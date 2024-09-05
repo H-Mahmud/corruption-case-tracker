@@ -29,12 +29,13 @@ function cct_create_case_date_data_table()
         $sql = "CREATE TABLE $table_name (
             id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
             post_id bigint(20) unsigned NOT NULL,
+            status varchar(255) NOT NULL,
             `key` varchar(255) NOT NULL,
             `value` datetime NOT NULL,
             PRIMARY KEY (id),
             KEY post_id (post_id),
             KEY `key` (`key`),
-            KEY `value` (`value`)
+            KEY `status` (`status`)
         ) $charset_collate;";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
