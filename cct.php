@@ -30,11 +30,10 @@ function cct_create_case_date_data_table()
             id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
             post_id bigint(20) unsigned NOT NULL,
             status varchar(255) NOT NULL,
-            `key` varchar(255) NOT NULL,
-            `value` datetime NOT NULL,
+            `start_date` datetime NOT NULL,
+            `end_date` datetime NOT NULL,
             PRIMARY KEY (id),
             KEY post_id (post_id),
-            KEY `key` (`key`),
             KEY `status` (`status`)
         ) $charset_collate;";
 
