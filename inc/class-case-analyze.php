@@ -23,5 +23,44 @@ if (!class_exists('CCT_Case_Analyze')) {
 
             return $year_counts;
         }
+
+        /**
+         * Get Average duration by case status from date data table
+         * @param string $status case status
+         * @return int average date
+         */
+        public static function get_average_duration_by_status($status)
+        {
+            global $wpdb;
+
+            $table_name = $wpdb->prefix . 'case_date_data';
+            $query = $wpdb->prepare(
+                "
+            SELECT
+                DATEDIFF(end_date, start_date) AS duration
+            FROM
+                $table_name
+            WHERE
+                status = %s
+            ",
+                $status
+            );
+
+            $results = $wpdb->get_results($query);
+            if (empty($results))
+                return 0;
+
+            $total_duration = 0;
+            $count = count($results);
+
+            foreach ($results as $row) {
+                $total_duration += $row->duration;
+            }
+
+            $average_duration = $total_duration / $count;
+
+            return intval($average_duration);
+        }
+
     }
 }
