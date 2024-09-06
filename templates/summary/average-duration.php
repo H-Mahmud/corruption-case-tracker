@@ -19,15 +19,6 @@ foreach ($statuses as $status => $label) {
 <canvas id="averageDurationChart" style="width:100%;max-width:100%"></canvas>
 
 <script>
-
-    <?php
-    $case_status = CCT_Utils::get_field_options('case_status');
-
-
-
-
-
-    ?>
     const data = {
         datasets: [{
             label: 'Average Duration (days)',
