@@ -149,5 +149,29 @@ if (!class_exists('CCT_Utils')) {
             return $query->found_posts;
         }
 
+        /**
+         * Insert delay status date field
+         * @param mixed $post_id case id
+         * @param mixed $case_status delay case status
+         * @param mixed $is_delay delay field name
+         * @param mixed $start start field name
+         * @param mixed $end end field name
+         * @return int $id;
+         */
+        public static function delay_status_date_insert($post_id, $case_status, $is_delay, $start, $end)
+        {
+            $case_status = $_POST['acf'][$is_delay];
+
+            if (isset($_POST['acf'][$is_delay]) && $_POST['acf'][$is_delay]) {
+                $start_date_obj = DateTime::createFromFormat('Ymd', $_POST['acf'][$start]);
+                $start_date = $start_date_obj->format('Y-m-j');
+
+                $end_date_obj = DateTime::createFromFormat('Ymd', $_POST['acf'][$end]);
+                $end_date = $end_date_obj->format('Y-m-j');
+                // cct_update_case_status_date($post_id, $case_status, $start_date, $end_date);
+            }
+
+            return 0;
+        }
     }
 }
