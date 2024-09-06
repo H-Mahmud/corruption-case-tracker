@@ -635,22 +635,13 @@ function cct_update_case_status_date($post_id, $case_status, $start_date, $end_d
         'status' => $case_status
     );
 
-    $format = array(
-        '%d',
-        '%s',
-        '%s',
-        '%s'
-    );
+    $format = array('%d', '%s', '%s', '%s');
 
     $results = $wpdb->get_row($wpdb->prepare("SELECT post_id, status FROM $table_name WHERE post_id=%d", $post_id));
 
-    if ($results) {
+    if ($results)
         $data_id = $wpdb->update($table_name, $data, array("post_id" => $post_id));
-
-    } else {
+    else
         $data_id = $wpdb->insert($table_name, $data, $format);
-
-    }
-
     return $data_id;
 }
