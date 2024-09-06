@@ -604,44 +604,53 @@ function cct_concluded_data_sav($post_id)
     if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || !current_user_can('edit_post', $post_id))
         return;
 
-    echo '<pre>';
+    if (!isset($_POST['acf']))
+        return;
 
-    if (isset($_POST['acf']) && isset($_POST['acf']['field_66d82c852304c'])) {
-        $date = DateTime::createFromFormat('Ymd', $_POST['acf']['field_66d82c852304c']);
-        $case_started = $date->format('Y-m-j');
+    $case_status = $_POST['acf']['field_66a5d36961b65'];
 
-        cct_insert_case_date_data($post_id, 'case_started', $case_started);
+    if (isset($_POST['acf']['field_66d82c35b0042']) && $_POST['acf']['field_66d82c35b0042']) {
+        $start_date_obj = DateTime::createFromFormat('Ymd', $_POST['acf']['field_66d82c852304c']);
+        $start_date = $start_date_obj->format('Y-m-j');
+
+        $end_date_obj = DateTime::createFromFormat('Ymd', $_POST['acf']['field_66d82d342304d']);
+        $end_date = $end_date_obj->format('Y-m-j');
+        cct_update_case_status_date($post_id, $case_status, $start_date, $end_date);
     }
 
-
-    if (isset($_POST['acf']) && isset($_POST['acf']['field_66d82d342304d'])) {
-        $date = DateTime::createFromFormat('Ymd', $_POST['acf']['field_66d82d342304d']);
-        $case_concluded = $date->format('Y-m-j');
-
-        cct_insert_case_date_data($post_id, 'case_concluded', $case_concluded);
-    }
 
 }
 add_action('save_post', 'cct_concluded_data_sav');
 
 
-function cct_insert_case_date_data($post_id, $key, $value)
+function cct_update_case_status_date($post_id, $case_status, $start_date, $end_date)
 {
     global $wpdb;
     $table_name = $wpdb->prefix . 'case_date_data';
 
     $data = array(
         'post_id' => $post_id,
-        'key' => $key,
-        'value' => $value,
+        'start_date' => $start_date,
+        'end_date' => $end_date,
+        'status' => $case_status
     );
 
     $format = array(
         '%d',
         '%s',
         '%s',
+        '%s'
     );
 
-    $wpdb->insert($table_name, $data, $format);
-    return $wpdb->insert_id;
+    $results = $wpdb->get_row($wpdb->prepare("SELECT post_id, status FROM $table_name WHERE post_id=%d", $post_id));
+
+    if ($results) {
+        $data_id = $wpdb->update($table_name, $data, array("post_id" => $post_id));
+
+    } else {
+        $data_id = $wpdb->insert($table_name, $data, $format);
+
+    }
+
+    return $data_id;
 }
