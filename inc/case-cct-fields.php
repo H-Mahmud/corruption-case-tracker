@@ -615,7 +615,7 @@ function cct_concluded_data_sav($post_id)
 
         $end_date_obj = DateTime::createFromFormat('Ymd', $_POST['acf']['field_66d82d342304d']);
         $end_date = $end_date_obj->format('Y-m-j');
-        cct_update_case_status_date($post_id, $case_status, $start_date, $end_date);
+        CCT_Utils::update_case_status_date($post_id, $case_status, $start_date, $end_date);
     }
 
 
@@ -623,25 +623,7 @@ function cct_concluded_data_sav($post_id)
 add_action('save_post', 'cct_concluded_data_sav');
 
 
-function cct_update_case_status_date($post_id, $case_status, $start_date, $end_date)
-{
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'case_date_data';
 
-    $data = array(
-        'post_id' => $post_id,
-        'start_date' => $start_date,
-        'end_date' => $end_date,
-        'status' => $case_status
-    );
 
-    $format = array('%d', '%s', '%s', '%s');
 
-    $results = $wpdb->get_row($wpdb->prepare("SELECT post_id, status FROM $table_name WHERE post_id=%d", $post_id));
 
-    if ($results)
-        $data_id = $wpdb->update($table_name, $data, array("post_id" => $post_id));
-    else
-        $data_id = $wpdb->insert($table_name, $data, $format);
-    return $data_id;
-}
