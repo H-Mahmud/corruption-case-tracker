@@ -219,6 +219,7 @@ function cct_case_data_fields()
                     'placeholder' => '',
                     'new_lines' => '',
                 ),
+                /*
                 array(
                     'key' => 'field_66b85d4827001',
                     'label' => 'Is the case delayed?',
@@ -490,7 +491,7 @@ function cct_case_data_fields()
                     'placeholder' => '',
                     'prepend' => '',
                     'append' => '',
-                ),
+                ),*/
                 array(
                     'key' => 'field_66d82c35b0042',
                     'label' => 'Concluded',
