@@ -1395,8 +1395,20 @@ function cct_concluded_data_sav($post_id)
 }
 add_action('save_post', 'cct_concluded_data_sav');
 
+add_action('before_delete_post', 'cct_delete_data_record_on_post_delete');
+function cct_delete_data_record_on_post_delete($post_id)
+{
+    global $wpdb;
 
+    if (empty($post_id) || get_post_status($post_id) === false) {
+        return;
+    }
 
+    $table_name = $wpdb->prefix . 'case_date_data';
 
-
-
+    $wpdb->delete(
+        $table_name,
+        array('post_id' => $post_id),
+        array('%d')
+    );
+}
