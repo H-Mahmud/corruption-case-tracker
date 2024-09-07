@@ -212,6 +212,18 @@ if (!class_exists('CCT_Utils')) {
             return $data_id;
         }
 
+        public static function delete_delay_case_status_date($post_id, $case_status)
+        {
+            global $wpdb;
+            $table_name = $wpdb->prefix . "case_date_data";
+            $data = array(
+                "post_id" => $post_id,
+                'status' => $case_status
+            );
+
+            $wpdb->delete($table_name, $data);
+        }
+
         /**
          * Insert delay status date field
          * @param mixed $post_id case id
@@ -230,6 +242,8 @@ if (!class_exists('CCT_Utils')) {
                 $end_date_obj = DateTime::createFromFormat('Ymd', $_POST['acf'][$end]);
                 $end_date = $end_date_obj->format('Y-m-j');
                 return CCT_Utils::update_delay_case_status_date($post_id, $case_status, $start_date, $end_date);
+            } else {
+                CCT_Utils::delete_delay_case_status_date($post_id, $case_status);
             }
 
             return 0;
