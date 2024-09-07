@@ -1326,6 +1326,8 @@ function cct_concluded_data_sav($post_id)
         $end_date_obj = DateTime::createFromFormat('Ymd', $_POST['acf']['field_66d82d342304d']);
         $end_date = $end_date_obj->format('Y-m-j');
         CCT_Utils::update_case_status_date($post_id, $case_status, $start_date, $end_date);
+    } else {
+        CCT_Utils::delete_delay_case_status_date($post_id, $case_status);
     }
 
     $fields = [
