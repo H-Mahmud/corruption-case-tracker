@@ -167,13 +167,21 @@ function get_delay_duration_statuses()
 
             // Calculate the difference between the two dates
             $interval = $startDate->diff($endDate);
+            $status = $status_obj['choices'][$field['status']];
 
+            if (cct_format_interval($interval)) {
+                $label = $status . ' ' . cct_format_interval($interval);
+                $badged .= <<<HTML
+                    <span style="background-color: $bg_color;">$label</span>
+                HTML;
 
-            $label = $status_obj['choices'][$field['status']] . ' ' . cct_format_interval($interval);
-            ;
-            $badged .= <<<HTML
-                <span style="background-color: $bg_color;">$label</span>
-            HTML;
+            } else {
+                $label = $start . ' Started ' . $status;
+                $badged .= <<<HTML
+                    <span style="background-color: $bg_color;">$label</span>
+                HTML;
+            }
+
         }
     }
     return $badged;
@@ -196,7 +204,7 @@ function cct_format_interval($interval)
     }
 
     if (empty($parts)) {
-        $parts[] = '0 days';
+        return false;
     }
 
     return implode(', ', $parts);
