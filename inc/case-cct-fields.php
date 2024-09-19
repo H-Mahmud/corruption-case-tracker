@@ -194,6 +194,8 @@ function cct_case_data_fields()
                         'national' => 'National',
                         'county' => 'County',
                         'municipal' => 'Municipal',
+                        'district' => 'District',
+                        'town' => 'Town'
                     ),
                     'default_value' => 'national',
                     'return_format' => 'value',
