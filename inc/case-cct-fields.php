@@ -177,6 +177,44 @@ function cct_case_data_fields()
                     'placeholder' => '',
                 ),
                 array(
+                    'key' => 'field_66ebbb274cac1',
+                    'label' => 'Forms of Corruption',
+                    'name' => 'forms_of_corruption',
+                    'aria-label' => '',
+                    'type' => 'select',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'choices' => array(
+                        'procurement_irregularities_fraud' => 'Procurement Irregularities / Fraud',
+                        'bribery' => 'Bribery',
+                        'extortion' => 'Extortion',
+                        'sextortion' => 'Sextortion',
+                        'favoritism' => 'Favoritism',
+                        'conflict_of_interest' => 'Conflict of Interest',
+                        'misapplication' => 'Misapplication',
+                        'misappropriation' => 'Misappropriation',
+                        'fraud' => 'Fraud',
+                        'abuse_of_office' => 'Abuse of Office',
+                        'money_laundering' => 'Money Laundering',
+                        'tax_evasion' => 'Tax Evasion',
+                    ),
+                    'default_value' => array(
+                    ),
+                    'return_format' => 'value',
+                    'multiple' => 1,
+                    'allow_null' => 0,
+                    'allow_in_bindings' => 0,
+                    'ui' => 0,
+                    'ajax' => 0,
+                    'placeholder' => '',
+                ),
+                array(
                     'key' => 'field_66b8562e29fe3',
                     'label' => 'Level of Government',
                     'name' => 'level_of_government',
@@ -1418,3 +1456,4 @@ function cct_delete_data_record_on_post_delete($post_id)
         array('%d')
     );
 }
+
