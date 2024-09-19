@@ -97,13 +97,15 @@ function cct_case_data_fields()
                         'id' => '',
                     ),
                     'choices' => array(
-                        'lacc' => 'LACC',
+                        'liberia_anti_corruption_commission' => 'Liberia Anti-Corruption Commission',
                         'ombudsman' => 'Ombudsman',
                         'magisterial_court' => 'Magisterial Court',
                         'circuit_court' => 'Circuit Court',
                         'supreme_court' => 'Supreme Court',
+                        'liberia_revenue_authority' => 'Liberia Revenue Authority',
+                        'ministry_of_justice' => 'Ministry of Justice'
                     ),
-                    'default_value' => 'lacc',
+                    'default_value' => 'liberia_anti_corruption_commission',
                     'return_format' => 'value',
                     'multiple' => 0,
                     'allow_null' => 0,
