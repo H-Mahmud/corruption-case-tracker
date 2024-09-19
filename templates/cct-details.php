@@ -13,7 +13,7 @@
             <?php
             $option = get_field_object('case_status');
             if ($option) {
-                echo $option['choices'][$option['value']];
+                echo $option['choices'][$option['value']] ?? '';
             }
             ?>
         </td>
@@ -167,7 +167,7 @@ function get_delay_duration_statuses()
 
             // Calculate the difference between the two dates
             $interval = $startDate->diff($endDate);
-            $status = $status_obj['choices'][$field['status']];
+            $status = $status_obj['choices'][$field['status']] ?? '';
 
             if (cct_format_interval($interval)) {
                 $label = $status . ' ' . cct_format_interval($interval);

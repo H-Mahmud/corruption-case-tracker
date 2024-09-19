@@ -88,7 +88,7 @@
                 $status_label = '';
                 if ($status_field) {
                     $status = $status_field['value'];
-                    $status_label = $status_field['choices'][$status];
+                    $status_label = $status_field['choices'][$status] ?? '';
                 }
 
                 ?>
