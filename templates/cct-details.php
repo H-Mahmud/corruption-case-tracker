@@ -46,7 +46,7 @@
             <?php
             $option = get_field_object('jurisdiction');
             if ($option) {
-                echo $option['choices'][$option['value']];
+                echo $option['choices'][$option['value']] ?? '';
             }
             ?>
         </td>
