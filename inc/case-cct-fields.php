@@ -48,6 +48,42 @@ function cct_case_data_fields()
                     'placeholder' => '',
                 ),
                 array(
+                    'key' => 'field_66ebc842673a3',
+                    'label' => 'Judge',
+                    'name' => 'judge',
+                    'aria-label' => '',
+                    'type' => 'text',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_66a5d36961b65',
+                                'operator' => '==',
+                                'value' => 'concluded_guilty',
+                            ),
+                        ),
+                        array(
+                            array(
+                                'field' => 'field_66a5d36961b65',
+                                'operator' => '==',
+                                'value' => 'concluded_not_guilty',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'maxlength' => '',
+                    'allow_in_bindings' => 0,
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                ),
+                array(
                     'key' => 'field_66c6c28b6bb2e',
                     'label' => 'Year of conclusion',
                     'name' => 'year_of_conclusion',
@@ -1456,4 +1492,3 @@ function cct_delete_data_record_on_post_delete($post_id)
         array('%d')
     );
 }
-
