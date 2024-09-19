@@ -84,6 +84,44 @@ function cct_case_data_fields()
                     'append' => '',
                 ),
                 array(
+                    'key' => 'field_66ebca91dd4c9',
+                    'label' => 'Amount Recovered',
+                    'name' => 'amount_recovered',
+                    'aria-label' => '',
+                    'type' => 'number',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_66a5d36961b65',
+                                'operator' => '==',
+                                'value' => 'concluded_guilty',
+                            ),
+                        ),
+                        array(
+                            array(
+                                'field' => 'field_66a5d36961b65',
+                                'operator' => '==',
+                                'value' => 'concluded_via_settlement',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'min' => '',
+                    'max' => '',
+                    'allow_in_bindings' => 1,
+                    'placeholder' => '',
+                    'step' => '',
+                    'prepend' => '',
+                    'append' => '',
+                ),
+                array(
                     'key' => 'field_66c6c28b6bb2e',
                     'label' => 'Year of conclusion',
                     'name' => 'year_of_conclusion',
