@@ -1,5 +1,9 @@
 <table class="cct-details">
     <tr>
+        <th>Case Number</th>
+        <td><?php the_field('case_number'); ?></td>
+    </tr>
+    <tr>
         <th>Case Title</th>
         <td><?php the_title(); ?></td>
     </tr>
@@ -18,14 +22,40 @@
             ?>
         </td>
     </tr>
+
+    <?php
+    $case_status = get_field('case_status');
+    if ($case_status == 'concluded_guilty' || $case_status == 'concluded_not_guilty') { ?>
+        <tr>
+            <th>Judge</th>
+            <td><?php the_field('judge'); ?></td>
+        </tr>
+    <?php } ?>
+
+    <?php
+    if (get_field('amount_involved')) { ?>
+        <tr>
+            <th>Amount Involved</th>
+            <td><?php the_field('amount_involved'); ?></td>
+        </tr>
+    <?php } ?>
+
+    <?php
+    $case_status = get_field(selector: 'case_status');
+    if ($case_status == 'concluded_guilty' || $case_status == 'concluded_via_settlement') { ?>
+        <tr>
+            <th>Amount Recovered</th>
+            <td><?php the_field('amount_recovered'); ?></td>
+        </tr>
+    <?php } ?>
+
     <?php
     if (get_field('year_of_conclusion')) { ?>
         <tr>
             <th>Year of Conclusion</th>
             <td><?php the_field('year_of_conclusion'); ?></td>
         </tr>
-    <?php }
-    ; ?>
+    <?php } ?>
     <?php
     if (get_delay_duration_statuses()) {
         ?>
@@ -57,7 +87,7 @@
             <?php
             $option = get_field_object('sector_of_the_case');
             if ($option) {
-                echo $option['choices'][$option['value']];
+                echo $option['choices'][$option['value']] ?? '';
             }
             ?>
         </td>
@@ -69,6 +99,20 @@
             $option = get_field_object('level_of_government');
             if ($option) {
                 echo $option['choices'][$option['value']];
+            }
+            ?>
+        </td>
+    </tr>
+    <tr class="form-of-corruption">
+        <th>Forms of Corruption</th>
+        <td>
+            <?php
+            $option = get_field_object('forms_of_corruption');
+
+            if ($option) {
+                foreach ($option['value'] as $value) {
+                    echo '<span>' . $option['choices'][$value] . '</span>' ?? '';
+                }
             }
             ?>
         </td>
