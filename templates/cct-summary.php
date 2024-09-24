@@ -27,6 +27,7 @@
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/governments.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/jurisdictions.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/forms-of-corruption.php'; ?>
+    <?php //include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/amount-of-involved.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/average-duration.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/average-delay-duration.php'; ?>
 </div>
