@@ -332,7 +332,8 @@ function cct_case_data_fields()
                         'id' => '',
                     ),
                     'choices' => array(
-                        'procurement_irregularities_fraud' => 'Procurement Irregularities / Fraud',
+                        'procurement_irregularities' => 'Procurement Irregularities / Fraud',
+                        // 'procurement_irregularities_fraud' => 'Procurement Irregularities / Fraud',
                         'bribery' => 'Bribery',
                         'extortion' => 'Extortion',
                         'sextortion' => 'Sextortion',

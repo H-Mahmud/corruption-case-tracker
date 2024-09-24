@@ -109,9 +109,11 @@
             <?php
             $option = get_field_object('forms_of_corruption');
 
-            if ($option) {
-                foreach ($option['value'] as $value) {
-                    echo '<span>' . $option['choices'][$value] . '</span>' ?? '';
+            foreach ($option['value'] as $value) {
+                $badge = $option['choices'][$value] ?? false;
+
+                if ($badge) {
+                    echo '<span>' . $badge . '</span>';
                 }
             }
             ?>
