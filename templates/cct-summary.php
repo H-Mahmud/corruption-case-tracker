@@ -10,6 +10,8 @@
         <option value="statuses" <?php selected($summary_by, 'statuses'); ?>>Statuses</option>
         <option value="governments" <?php selected($summary_by, 'governments'); ?>>Governments</option>
         <option value="jurisdictions" <?php selected($summary_by, 'jurisdictions'); ?>>Jurisdictions</option>
+        <option value="forms_of_corruption" <?php selected($summary_by, 'forms_of_corruption'); ?>>Forms of Corruption
+        </option>
         <option value="average-duration" <?php selected($summary_by, 'average-duration'); ?>>Average
             Duration</option>
         <option value="average-delay-duration" <?php selected($summary_by, 'average-delay-duration'); ?>>Average Delay
@@ -24,6 +26,7 @@
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/statuses.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/governments.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/jurisdictions.php'; ?>
+    <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/forms-of-corruption.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/average-duration.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/average-delay-duration.php'; ?>
 </div>
