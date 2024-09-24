@@ -66,6 +66,23 @@
                 </select>
             </label>
 
+            <label for="formsOfCorruption">
+                Forms of Corruption
+                <select name="forms_of_corruption" id="formsOfCorruption">
+                    <option value="">All Forms</option>
+                    <?php
+                    $level_of_government_options = CCT_Utils::get_field_options('forms_of_corruption');
+                    foreach ($level_of_government_options as $key => $value) {
+                        if (isset($_GET['forms_of_corruption']) && $_GET['forms_of_corruption'] === $key) {
+                            echo '<option value="' . $key . '" selected>' . $value . '</option>';
+                        } else {
+                            echo '<option value="' . $key . '">' . $value . '</option>';
+                        }
+                    }
+                    ?>
+                </select>
+            </label>
+
         </div>
 
         <div class="search-input-group">

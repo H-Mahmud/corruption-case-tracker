@@ -41,6 +41,14 @@ if (!class_exists('CCT_Case_Query')) {
             $level_of_government_filter = $this->get_filter('level_of_government');
             $level_of_government_filter && array_push($meta_query_filter, $level_of_government_filter);
 
+            // $forms_of_corruption_filter = $this->get_filter('forms_of_corruption');
+            $forms_of_corruption_filter = isset($_GET['forms_of_corruption']);
+            $forms_of_corruption_filter && array_push($meta_query_filter, [
+                'key' => 'forms_of_corruption',
+                'value' => $_GET['forms_of_corruption'],
+                'compare' => 'LIKE',
+            ]);
+
 
             // Search Query on Post Meta
             $meta_query_search = array('relation' => 'OR');
