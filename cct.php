@@ -17,6 +17,7 @@
 defined("ABSPATH") or exit("No direct script access allowed");
 
 defined('CCT_PLUGIN_DIR_PATH') || define('CCT_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
+defined('CCT_PLUGIN_DIR_URL') || define('CCT_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
 
 function cct_create_case_date_data_table()
 {
