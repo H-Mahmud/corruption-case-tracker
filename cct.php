@@ -52,6 +52,7 @@ include_once(plugin_dir_path(__FILE__) . 'inc/class-case-analyze.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/case-cct.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/case-cct-fields.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-cct-admin.php');
+include_once(plugin_dir_path(__FILE__) . 'inc/class-import.php');
 
 
 if (!function_exists('cct_home_cb')) {
