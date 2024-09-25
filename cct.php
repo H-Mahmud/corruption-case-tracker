@@ -50,6 +50,7 @@ include_once(plugin_dir_path(__FILE__) . 'inc/class-utils.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-case-analyze.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/case-cct.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/case-cct-fields.php');
+include_once(plugin_dir_path(__FILE__) . 'inc/class-cct-admin.php');
 
 
 if (!function_exists('cct_home_cb')) {
@@ -67,28 +68,6 @@ if (!function_exists('cct_home_cb')) {
     }
 }
 
-
-function cct_case_import_export_menu_pages()
-{
-    add_submenu_page(
-        'edit.php?post_type=case',
-        'Tools',
-        'Tools',
-        'manage_options',
-        'tools',
-        'cct_import_export_tools_page_cb',
-        99
-    );
-}
-add_action('admin_menu', 'cct_case_import_export_menu_pages');
-
-
-function cct_import_export_tools_page_cb()
-{
-    if (!current_user_can('manage_options'))
-        return;
-    include_once(plugin_dir_path(__FILE__) . 'templates/tools.php');
-}
 
 
 if (!function_exists('cct_summary_cb')) {
