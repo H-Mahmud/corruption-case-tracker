@@ -55,3 +55,24 @@ function cct_case_post_type_register()
     );
 }
 add_action('init', 'cct_case_post_type_register');
+
+
+function cct_case_import_export_menu_pages()
+{
+    add_submenu_page(
+        'edit.php?post_type=case',
+        'Tools',
+        'Tools',
+        'manage_options',
+        'tools',
+        'cct_import_export_tools_page_cb',
+        99
+    );
+}
+add_action('admin_menu', 'cct_case_import_export_menu_pages');
+
+
+function cct_import_export_tools_page_cb()
+{
+
+}
