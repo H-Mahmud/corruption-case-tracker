@@ -85,6 +85,8 @@ add_action('admin_menu', 'cct_case_import_export_menu_pages');
 
 function cct_import_export_tools_page_cb()
 {
+    if (!current_user_can('manage_options'))
+        return;
     include_once(plugin_dir_path(__FILE__) . 'templates/tools.php');
 }
 
