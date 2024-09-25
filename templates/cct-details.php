@@ -127,6 +127,19 @@
         <th>Nature of the Case</th>
         <td> <?php the_field('nature_of_the_case'); ?> </td>
     </tr>
+
+    <?php
+    if (get_field('attachment')) { ?>
+        <tr>
+            <th>Attachment</th>
+            <td>
+                <?php $attachment = get_field('attachment'); ?>
+                <a class="download-button" href="<?php echo $attachment['url']; ?>" download><span><img
+                            src="<?php echo $attachment['icon']; ?>" alt="<?php echo $attachment['title']; ?>"></span>
+                    Download</a>
+            </td>
+        </tr>
+    <?php } ?>
 </table>
 
 

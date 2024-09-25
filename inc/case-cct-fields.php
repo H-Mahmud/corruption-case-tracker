@@ -220,7 +220,7 @@ function cct_case_data_fields()
                     'library' => 'all',
                     'min_size' => '',
                     'max_size' => '',
-                    'mime_types' => 'zip,docs,Docx,pdf,txt',
+                    'mime_types' => 'zip,docs,docx,pdf,txt',
                     'allow_in_bindings' => 0,
                 ),
                 array(
