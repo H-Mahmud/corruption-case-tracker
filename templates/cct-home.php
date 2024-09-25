@@ -110,6 +110,7 @@
 
                 ?>
                 <article class="case-card">
+                    <?php the_post_thumbnail(); ?>
                     <div class="meta-info">
                         <span class="date"><?php the_date(); ?></span>
                         <span class="status" <?php $status_color = CCT_Utils::get_status_color($status_field['value']); ?>
