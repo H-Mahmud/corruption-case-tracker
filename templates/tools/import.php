@@ -1,4 +1,4 @@
-<form>
+<form method="post" id="importData">
     <div class="import-container">
         <h1 class="title">Import Cases From CSV</h1>
         <hr>

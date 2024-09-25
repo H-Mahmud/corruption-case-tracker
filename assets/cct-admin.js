@@ -55,4 +55,21 @@ jQuery(document).ready(function ($) {
 
         });
     }
+
+
+    $("#importData").submit(function (e) {
+        e.preventDefault();
+
+        var form = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: CCT.ajaxUrl,
+            data: { action: "import_csv_data", form_data: form.serialize() },
+            success: function (data) {
+                alert(data);
+            }
+        });
+
+    });
 });

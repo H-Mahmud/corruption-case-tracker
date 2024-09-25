@@ -78,7 +78,7 @@ class CCT_Import_Cases
 
         // Basic Data
         $general_columns = array('post_id' => 'ID', 'post_title' => 'Title', 'post_date' => 'Date', );
-        $options = '<option selected>Select option</option>';
+        $options = '<option selected value="">Select option</option>';
         foreach ($general_columns as $key => $label) {
             $options .= <<<HTML
                 <option name="$key">$label</option>
