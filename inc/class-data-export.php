@@ -78,7 +78,7 @@ class CCT_Data_Export
                 $row_data = array(
                     get_the_ID(),
                     get_the_title(),
-                    get_the_date(),
+                    get_the_date('Y-m-d H:i:s'),
                 );
 
                 $row_data = array_merge($row_data, $metadata);

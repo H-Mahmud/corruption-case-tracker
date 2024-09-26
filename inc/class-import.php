@@ -65,13 +65,14 @@ class CCT_Import_Cases
 
         return $form_content .= <<<HTML
         <tr>
-            <th><label for="update">Update if post_id selected</label></th>
-            <td><input type="checkbox" name="update"></td>
-        </tr>
-        <tr>
             <td colspan="2">
                 <input type="hidden" name="csvId" value="$csv_id" />
                 <button class="button button-primary" type="submit">Submit</button>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p>If the ID column is selected, the case will be updated.</p>
+            </td>
         </tr>
         HTML;
     }
@@ -83,7 +84,7 @@ class CCT_Import_Cases
         $fields2 = acf_get_fields('group_66da7dac64b89');
 
         // Basic Data
-        $general_columns = array('post_id' => 'ID', 'post_title' => 'Title', 'post_date' => 'Date', );
+        $general_columns = array('ID' => 'ID', 'post_title' => 'Title', 'post_date' => 'Date', );
         $options = '<option selected value="">Select option</option>';
         foreach ($general_columns as $key => $label) {
             $options .= <<<HTML
@@ -114,21 +115,6 @@ class CCT_Import_Cases
         return $options;
     }
 
-
-    public function import_csv_data()
-    {
-        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], '_import-csv')) {
-            wp_send_json_error(array(
-                'message' => 'Unauthorized request',
-            ), 401); // Unauthorized
-        }
-
-        $params = array();
-        parse_str($_POST['form_data'], $params);
-
-        wp_send_json_success($params);
-    }
-
     /**
      * Verify Data Import Request
      *
@@ -150,6 +136,117 @@ class CCT_Import_Cases
         }
     }
 
+
+    public function import_csv_data()
+    {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], '_import-csv')) {
+            wp_send_json_error('Unauthorized request', 401);
+        }
+
+        $csv_data_index = array();
+        parse_str($_POST['form_data'], $csv_data_index);
+
+        // Create variable for extra fields
+        $csv_id = $csv_data_index['csvId'];
+        $is_update = isset($csv_data_index['update']) && $csv_data_index['update'] == 'on' ? true : false;
+
+        // Remove Extra fields
+        unset($csv_data_index['csvId']);
+        unset($csv_data_index['update']);
+
+        $this->process_import($csv_id, $is_update, $csv_data_index);
+
+        wp_send_json_success('Data imported successfully', 200);
+    }
+
+    public function process_import($csv_id, $is_update, $data_index)
+    {
+        $csv_data = $this->parse_csv_to_array($csv_id);
+
+
+
+        for ($i = 1; $i < count($csv_data); $i++) {
+            $data = $csv_data[$i];
+
+            $post_data = $this->parse_post_data($data, $data_index);
+            $acf_data = $this->parse_acf_fields($data, $data_index);
+            $this->import($is_update, $post_data, $acf_data);
+        }
+    }
+
+    public function parse_csv_to_array($csv_id)
+    {
+        $file_path = get_attached_file($csv_id);
+
+        if (!file_exists($file_path)) {
+            wp_send_json_error('File not found', 400);
+        }
+
+        $csv_file = fopen($file_path, 'r');
+
+        if (!$csv_file) {
+            wp_send_json_error('Failed to read the CSV file.', 500);
+        }
+
+        $csv_data = [];
+
+        while (($row = fgetcsv($csv_file)) !== false) {
+            $csv_data[] = $row;
+        }
+
+        fclose($csv_file);
+
+        return $csv_data;
+    }
+
+    public function parse_post_data(array $data, array $data_index)
+    {
+        $post_data = [];
+        $columns = [
+            'ID',
+            'post_title',
+            'post_date',
+        ];
+
+        foreach ($columns as $column) {
+            if (array_search($column, $data_index) !== false) {
+                $index = array_search($column, $data_index);
+                $post_data[$column] = $data[$index];
+
+            }
+        }
+        return $post_data;
+    }
+
+
+    public function parse_acf_fields($data, $data_index)
+    {
+        $acf_data = [];
+        $post_data_columns = [
+            'ID',
+            'post_title',
+            'post_date',
+        ];
+
+        foreach ($data_index as $index => $column) {
+            if ($column && !in_array($column, $post_data_columns)) {
+                $acf_data[$column] = $data[$index];
+
+            }
+        }
+        return $acf_data;
+    }
+
+    public function import($is_update, $post_data, $acf_data)
+    {
+        $post_id = $post_data['ID'];
+        $post_data['post_type'] = 'case';
+        $post_data['post_status'] = 'publish';
+        $post_id = wp_insert_post($post_data);
+        foreach ($acf_data as $key => $value) {
+            update_field($key, $value, $post_id);
+        }
+    }
 
 
     public static function getInstance()

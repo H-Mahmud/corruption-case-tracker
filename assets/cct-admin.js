@@ -61,7 +61,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
 
         var form = $(this);
-
+        $('.import-spinner').addClass('is-active');
         $.ajax({
             type: "POST",
             url: CCT.ajaxUrl,
@@ -71,7 +71,13 @@ jQuery(document).ready(function ($) {
                 form_data: form.serialize()
             },
             success: function (data) {
-                console.log(data);
+                $('#import-form').hide();
+                $("#success-message").html(data.data);
+                $('.import-spinner').removeClass('is-active');
+            },
+            error: function (data) {
+                $("#error-message").html(data.responseJSON.data);
+                $('.import-spinner').removeClass('is-active');
             }
         });
 

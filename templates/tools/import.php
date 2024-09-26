@@ -18,6 +18,8 @@
                 </table>
                 <div class="spinner import-spinner"></div>
             </form>
+            <p id="error-message" style="color:red"></p>
+            <p id="success-message" style="color: green;"></p>
         </div>
     </form>
 
