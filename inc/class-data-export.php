@@ -11,20 +11,7 @@ class CCT_Data_Export
 
     public function cct_data_export()
     {
-        ;
-
-        $args = array(
-            'post_type' => 'case',
-            'posts_per_page' => -1,
-            // 'meta_query' => array(
-            //     array(
-            //         'key' => $meta_key,
-            //         'value' => $meta_value,
-            //     ),
-            // ),
-        );
-
-        $query = new WP_Query($args);
+        $query = $this->get_export_query();
 
         // Get WordPress uploads directory
         $upload_dir = wp_upload_dir();
@@ -96,6 +83,71 @@ class CCT_Data_Export
 
         // Output a button linking to the CSV file
         echo '<a href="' . esc_url($csv_url) . '" class="button">Download CSV</a>';
+    }
+
+
+    public function get_export_query()
+    {
+
+
+        // $args = array(
+        //     'post_type' => 'case',
+        //     'posts_per_page' => -1,
+        //     // 'meta_query' => array(
+        //     //     array(
+        //     //         'key' => $meta_key,
+        //     //         'value' => $meta_value,
+        //     //     ),
+        //     // ),
+        // );
+
+
+        $query['post_type'] = 'case';
+        $query['meta_query']['relation'] = 'AND';
+
+        // Filter Query By Post Meta
+        $meta_query_filter = array('relation' => 'AND');
+
+        $case_status_filter = $this->get_filter('case_status');
+        $case_status_filter && array_push($meta_query_filter, $case_status_filter);
+
+        $jurisdiction_filter = $this->get_filter('jurisdiction');
+        $jurisdiction_filter && array_push($meta_query_filter, $jurisdiction_filter);
+
+        $section_filter = $this->get_filter('sector_of_the_case');
+        $section_filter && array_push($meta_query_filter, $section_filter);
+
+        $level_of_government_filter = $this->get_filter('level_of_government');
+        $level_of_government_filter && array_push($meta_query_filter, $level_of_government_filter);
+
+        // $forms_of_corruption_filter = $this->get_filter('forms_of_corruption');
+        $forms_of_corruption_filter = isset($_GET['forms_of_corruption']);
+        $forms_of_corruption_filter && array_push($meta_query_filter, [
+            'key' => 'forms_of_corruption',
+            'value' => $_GET['forms_of_corruption'],
+            'compare' => 'LIKE',
+        ]);
+
+
+        $query['meta_query'][] = $meta_query_filter;
+
+        return new WP_Query($query);
+    }
+
+
+    public function get_filter($key)
+    {
+        if (!isset($_GET[$key]) || empty($_GET[$key]))
+            return false;
+
+        $value = $_GET[$key];
+
+        return [
+            'key' => $key,
+            'value' => $value,
+            'compare' => '=',
+        ];
+
     }
 
     public static function getInstance()
