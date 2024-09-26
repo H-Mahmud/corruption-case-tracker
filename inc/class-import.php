@@ -9,6 +9,7 @@ class CCT_Import_Cases
     private function __construct()
     {
         add_action('wp_ajax_fetch_csv_mapper', array($this, 'fetch_csv_mapper'));
+        add_action('wp_ajax_import_csv_data', array($this, 'import_csv_data'));
     }
 
     public function fetch_csv_mapper()
@@ -108,6 +109,20 @@ class CCT_Import_Cases
         return $options;
     }
 
+
+    public function import_csv_data()
+    {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], '_import-csv')) {
+            wp_send_json_error(array(
+                'message' => 'Unauthorized request',
+            ), 401); // Unauthorized
+        }
+
+        $params = array();
+        parse_str($_POST['form_data'], $params);
+
+        wp_send_json_success($params);
+    }
 
     /**
      * Verify Data Import Request

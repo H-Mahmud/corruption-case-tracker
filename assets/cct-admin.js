@@ -65,9 +65,13 @@ jQuery(document).ready(function ($) {
         $.ajax({
             type: "POST",
             url: CCT.ajaxUrl,
-            data: { action: "import_csv_data", form_data: form.serialize() },
+            data: {
+                action: "import_csv_data",
+                nonce: CCT.nonce,
+                form_data: form.serialize()
+            },
             success: function (data) {
-                alert(data);
+                console.log(data);
             }
         });
 
