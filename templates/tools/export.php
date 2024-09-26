@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h2>Export Posts to CSV</h2>
+    <h2>Export Cases to CSV</h2>
 
     <div class="import-container">
 
