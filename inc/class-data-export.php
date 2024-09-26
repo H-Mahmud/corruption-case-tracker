@@ -40,7 +40,7 @@ class CCT_Data_Export
         }
 
         // Define the CSV columns
-        $csv_columns = array('post_id', 'post_title', 'post_date');
+        $csv_columns = array('ID', 'post_title', 'post_date');
         $metadata_columns = [];
 
         $fields = acf_get_fields('group_66a5d36905afe');
