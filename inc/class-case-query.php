@@ -58,11 +58,13 @@ if (!class_exists('CCT_Case_Query')) {
                 array_push($meta_query_search, $nature_of_the_case, $summary_of_the_case);
 
                 // Define search term on query to search on title
-                $query['cct-search'] = $_GET['cct-search'];
+                // $query['cct-search'] = $_GET['cct-search'];
+                $query['s'] = $_GET['cct-search'];
             }
 
             $query['meta_query'][] = $meta_query_filter;
-            $query['meta_query'][] = $meta_query_search;
+            // $query['meta_query'][] = $meta_query_search;
+
 
             return new WP_Query($query);
 
