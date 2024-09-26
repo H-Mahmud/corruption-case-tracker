@@ -1517,7 +1517,38 @@ function cct_concluded_data_sav($post_id)
         CCT_Utils::delete_delay_case_status_date($post_id, $case_status);
     }
 
-    $fields = [
+
+    $fields = cct_custom_date_fields();
+
+    foreach ($fields as $field) {
+        CCT_Utils::delay_status_date_insert($post_id, 'delay_' . $field['status'], $field['is_delay'], $field['start_date'], $field['end_date']);
+    }
+
+}
+add_action('save_post', 'cct_concluded_data_sav');
+
+add_action('before_delete_post', 'cct_delete_data_record_on_post_delete');
+function cct_delete_data_record_on_post_delete($post_id)
+{
+    global $wpdb;
+
+    if (empty($post_id) || get_post_status($post_id) === false) {
+        return;
+    }
+
+    $table_name = $wpdb->prefix . 'case_date_data';
+
+    $wpdb->delete(
+        $table_name,
+        array('post_id' => $post_id),
+        array('%d')
+    );
+}
+
+
+function cct_custom_date_fields()
+{
+    return $fields = [
         [
             'status' => 'alleged',
             'is_delay' => 'field_66da7dac2cb54',
@@ -1573,29 +1604,4 @@ function cct_concluded_data_sav($post_id)
             'end_date' => 'field_66dc0f4b17b33'
         ]
     ];
-
-
-    foreach ($fields as $field) {
-        CCT_Utils::delay_status_date_insert($post_id, 'delay_' . $field['status'], $field['is_delay'], $field['start_date'], $field['end_date']);
-    }
-
-}
-add_action('save_post', 'cct_concluded_data_sav');
-
-add_action('before_delete_post', 'cct_delete_data_record_on_post_delete');
-function cct_delete_data_record_on_post_delete($post_id)
-{
-    global $wpdb;
-
-    if (empty($post_id) || get_post_status($post_id) === false) {
-        return;
-    }
-
-    $table_name = $wpdb->prefix . 'case_date_data';
-
-    $wpdb->delete(
-        $table_name,
-        array('post_id' => $post_id),
-        array('%d')
-    );
 }
