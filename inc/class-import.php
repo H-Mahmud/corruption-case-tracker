@@ -47,7 +47,7 @@ class CCT_Import_Cases
         $form_content = '';
         foreach ($data[0] as $key => $item) {
             $example = $data[1][$key];
-            $options = $this->get_data_mapping_options();
+            $options = $this->get_data_mapping_options($item);
             $form_content .= <<<HTML
             <tr>
                 <th>
@@ -71,14 +71,14 @@ class CCT_Import_Cases
         </tr>
         <tr>
             <td colspan="2">
-                <p>If the ID column is selected, the case will be updated.</p>
+                <p>Notice: If the ID column is selected, the case will be updated.</p>
             </td>
         </tr>
         HTML;
     }
 
 
-    public function get_data_mapping_options()
+    public function get_data_mapping_options($column)
     {
         $fields1 = acf_get_fields('group_66a5d36905afe');
         $fields2 = acf_get_fields('group_66da7dac64b89');
@@ -86,18 +86,22 @@ class CCT_Import_Cases
         // Basic Data
         $general_columns = array('ID' => 'ID', 'post_title' => 'Title', 'post_date' => 'Date', );
         $options = '<option selected value="">Select option</option>';
+        $i = 0;
         foreach ($general_columns as $key => $label) {
+            $selected = $column == $key ? 'selected' : '';
             $options .= <<<HTML
-                <option value="$key">$label</option>
+                <option value="$key" $selected>$label</option>
             HTML;
+            $i++;
         }
 
         // ACF Fields
         foreach ($fields1 as $field) {
             $name = $field['name'];
             $label = $field['label'];
+            $selected = $column == $name ? 'selected' : '';
             $options .= <<<HTML
-                <option value="$name">$label</option>
+                <option value="$name" $selected>$label</option>
             HTML;
         }
 
@@ -106,8 +110,9 @@ class CCT_Import_Cases
         foreach ($fields2 as $field) {
             $name = $field['name'];
             $label = $field['label'];
+            $selected = $column == $name ? 'selected' : '';
             $options .= <<<HTML
-                <option value="$name">$label</option>
+                <option value="$name" $selected>$label</option>
             HTML;
         }
         $options .= '</optgroup>';
@@ -243,6 +248,7 @@ class CCT_Import_Cases
         $post_data['post_type'] = 'case';
         $post_data['post_status'] = 'publish';
         $post_id = wp_insert_post($post_data);
+
         foreach ($acf_data as $key => $value) {
             update_field($key, $value, $post_id);
         }

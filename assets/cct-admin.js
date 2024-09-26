@@ -71,7 +71,7 @@ jQuery(document).ready(function ($) {
                 form_data: form.serialize()
             },
             success: function (data) {
-                $('#import-form').hide();
+                $('#importData .form-table').hide();
                 $("#success-message").html(data.data);
                 $('.import-spinner').removeClass('is-active');
             },
