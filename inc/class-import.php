@@ -62,11 +62,16 @@ class CCT_Import_Cases
             </tr>
            HTML;
         }
+
         return $form_content .= <<<HTML
+        <tr>
+            <th><label for="update">Update if post_id selected</label></th>
+            <td><input type="checkbox" name="update"></td>
+        </tr>
         <tr>
             <td colspan="2">
                 <input type="hidden" name="csvId" value="$csv_id" />
-            <button class="button button-primary" type="submit">Submit</button>
+                <button class="button button-primary" type="submit">Submit</button>
         </tr>
         HTML;
     }
@@ -82,7 +87,7 @@ class CCT_Import_Cases
         $options = '<option selected value="">Select option</option>';
         foreach ($general_columns as $key => $label) {
             $options .= <<<HTML
-                <option name="$key">$label</option>
+                <option value="$key">$label</option>
             HTML;
         }
 
@@ -91,7 +96,7 @@ class CCT_Import_Cases
             $name = $field['name'];
             $label = $field['label'];
             $options .= <<<HTML
-                <option name="$name">$label</option>
+                <option value="$name">$label</option>
             HTML;
         }
 
@@ -101,7 +106,7 @@ class CCT_Import_Cases
             $name = $field['name'];
             $label = $field['label'];
             $options .= <<<HTML
-                <option name="$name">$label</option>
+                <option value="$name">$label</option>
             HTML;
         }
         $options .= '</optgroup>';
