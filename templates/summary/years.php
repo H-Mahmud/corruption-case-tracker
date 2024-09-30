@@ -11,7 +11,7 @@ if (isset($_GET['summary_by']) && $_GET['summary_by'] !== 'years')
         const data = {
             datasets: [{
                 label: '',
-                data: <?php echo json_encode(CCT_Case_Analyze::count_cases_by_year()); ?>,
+                data: <?php echo json_encode(CCT_Case_Analyze::get_all_cases_count()); ?>,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1

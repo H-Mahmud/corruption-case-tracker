@@ -16,7 +16,7 @@ $statuses = [
 ];
 $data = [];
 foreach ($statuses as $status => $label) {
-    $data[$label] = CCT_Case_Analyze::get_average_duration_by_status('delay_' . $status);
+    $data[$label] = CCT_Case_Analyze::get_average_duration('delay_' . $status);
 }
 ?>
 

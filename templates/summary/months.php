@@ -27,7 +27,7 @@ if (isset($_GET['submit_year']) && $_GET['submit_year'] > 1900 && $_GET['submit_
         const data = {
             datasets: [{
                 label: '',
-                data: <?php echo json_encode(CCT_Utils::get_cases_count_by_month($year)); ?>,
+                data: <?php echo json_encode(CCT_Case_Analyze::get_cases_count_for_year($year)); ?>,
             }]
         };
 

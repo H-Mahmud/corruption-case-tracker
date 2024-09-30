@@ -12,7 +12,7 @@ $statuses = [
 
 $data = [];
 foreach ($statuses as $status => $label) {
-    $data[$label] = CCT_Case_Analyze::get_average_duration_by_status($status);
+    $data[$label] = CCT_Case_Analyze::get_average_duration($status);
 }
 ?>
 

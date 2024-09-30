@@ -7,10 +7,8 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'forms_of_corruption'
 <canvas id="formsOfCorruptionChart" style="width:100%;max-width:100%"></canvas>
 
 <script>
-
     <?php
     $forms_of_corruption = CCT_Utils::get_field_options('forms_of_corruption');
-
 
     $data = [];
     foreach ($forms_of_corruption as $key => $value) {
@@ -31,7 +29,6 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'forms_of_corruption'
 
     };
 
-
     new Chart("formsOfCorruptionChart", config);
 </script>
 
@@ -39,7 +36,6 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'forms_of_corruption'
 
 function cct_get_form_of_corruption_count($meta_key, $meta_value)
 {
-
     $args = array(
         'post_type' => 'case',
         'meta_key' => $meta_key,

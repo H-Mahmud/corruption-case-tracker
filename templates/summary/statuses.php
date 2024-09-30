@@ -14,7 +14,7 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'statuses')
 
     $data = [];
     foreach ($case_status as $key => $value) {
-        $data[$value] = CCT_Utils::get_case_count_by_meta('case_status', $key);
+        $data[$value] = CCT_Case_Analyze::get_all_cases_count_for_meta('case_status', $key);
     }
 
     ?>

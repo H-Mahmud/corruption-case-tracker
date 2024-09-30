@@ -53,59 +53,6 @@ if (!class_exists('CCT_Utils')) {
         }
 
 
-        /**
-         * Summary of get_cases_count_by_month
-         * 
-         * Cases count by month for a year selected
-         * 
-         * @param int $year full year
-         * @return array
-         */
-        public static function get_cases_count_by_month($year)
-        {
-            global $wpdb;
-
-            $results = $wpdb->get_results($wpdb->prepare("
-        SELECT 
-            MONTHNAME(p.post_date) AS month_name, 
-            COUNT(*) AS post_count 
-        FROM 
-            $wpdb->posts p 
-        WHERE 
-            p.post_type = 'case' 
-            AND p.post_status = 'publish' 
-            AND YEAR(p.post_date) = %d 
-        GROUP BY 
-            MONTH(p.post_date)
-        ORDER BY 
-            MONTH(p.post_date)
-    ", $year), OBJECT_K);
-
-            $months = [
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-                'July',
-                'August',
-                'September',
-                'October',
-                'November',
-                'December'
-            ];
-
-            $month_counts = array_fill_keys($months, 0);
-
-            foreach ($results as $month_name => $result) {
-                $month_counts[$month_name] = $result->post_count;
-            }
-
-            return $month_counts;
-        }
-
-
         public static function get_status_color($status)
         {
 
@@ -130,27 +77,6 @@ if (!class_exists('CCT_Utils')) {
             return $statuses_color[$status] ?? '';
         }
 
-        /**
-         * Get total case count by post meta key and value
-         * 
-         * @param string $meta_key
-         * @param string $meta_value
-         * @return int|mixed
-         */
-        public static function get_case_count_by_meta($meta_key, $meta_value)
-        {
-            $args = array(
-                'post_type' => 'case',
-                'meta_key' => $meta_key,
-                'meta_value' => $meta_value,
-                'posts_per_page' => -1,
-                'fields' => 'ids',
-            );
-
-            $query = new WP_Query($args);
-
-            return $query->found_posts;
-        }
 
         /**
          * Update case status date on custom date table
