@@ -55,7 +55,7 @@ include_once(plugin_dir_path(__FILE__) . 'inc/class-cct-admin.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-import.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-data-export.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/sanction-cpt-fields.php');
-
+include_once(CCT_PLUGIN_DIR_PATH . 'inc/class-custom-data-handle.php');
 
 if (!function_exists('cct_home_cb')) {
     add_shortcode('cct-home', 'cct_home_cb');
