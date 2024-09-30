@@ -49,13 +49,15 @@ register_activation_hook(__FILE__, 'cct_create_case_date_data_table');
 include_once(CCT_PLUGIN_DIR_PATH . 'inc/tools/class-case-import.php');
 include_once(CCT_PLUGIN_DIR_PATH . 'inc/tools/class-case-export.php');
 
+include_once(CCT_PLUGIN_DIR_PATH . 'inc/acf/cct-cpt.php');
+include_once(CCT_PLUGIN_DIR_PATH . 'inc/acf/case-cct-fields.php');
+include_once(CCT_PLUGIN_DIR_PATH . 'inc/acf/sanction-cpt-fields.php');
+
+
 include_once(plugin_dir_path(__FILE__) . 'inc/class-case-query.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-utils.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-case-analyze.php');
-include_once(plugin_dir_path(__FILE__) . 'inc/cct-cpt.php');
-include_once(plugin_dir_path(__FILE__) . 'inc/case-cct-fields.php');
 include_once(plugin_dir_path(__FILE__) . 'inc/class-cct-admin.php');
-include_once(plugin_dir_path(__FILE__) . 'inc/sanction-cpt-fields.php');
 include_once(CCT_PLUGIN_DIR_PATH . 'inc/class-custom-data-handle.php');
 
 if (!function_exists('cct_home_cb')) {
