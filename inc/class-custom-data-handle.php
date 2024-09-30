@@ -49,7 +49,7 @@ class CCT_Custom_Data_Handle
      * @param mixed $end_date case end date
      * @return bool|int
      */
-    public static function update_case_status_period($post_id, $case_status, $start_date, $end_date)
+    public static function update_case_status_period($post_id, $case_status, $start_date, $end_date, $is_concluded = false)
     {
         global $wpdb;
         $table_name = $wpdb->prefix . 'case_date_data';
@@ -60,11 +60,20 @@ class CCT_Custom_Data_Handle
             'end_date' => $end_date,
             'status' => $case_status
         );
+
         $format = array('%d', '%s', '%s', '%s');
-        $results = $wpdb->get_row($wpdb->prepare("SELECT id FROM $table_name WHERE post_id=%d", $post_id));
+        if ($is_concluded) {
+            $results = $wpdb->get_row(
+                $wpdb->prepare("SELECT id FROM $table_name WHERE post_id=%d", $post_id, $case_status)
+            );
+        } else {
+            $results = $wpdb->get_row(
+                $wpdb->prepare("SELECT id FROM $table_name WHERE post_id=%d AND status=%s", $post_id, $case_status)
+            );
+        }
 
         if ($results)
-            $data_id = $wpdb->update($table_name, $data, array("id" => $results->id));
+            $data_id = $wpdb->update($table_name, $data, ["id" => $results->id]);
         else
             $data_id = $wpdb->insert($table_name, $data, $format);
         return $data_id;

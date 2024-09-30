@@ -16,7 +16,7 @@ class CCT_Case_ACF_Data_Save
      */
     private final function __construct()
     {
-        add_action('save_post', array($this, 'case_status_period_date_save'));
+        add_action('save_post', array($this, 'case_status_period_date_save'), 10, 1);
 
     }
 
@@ -37,10 +37,10 @@ class CCT_Case_ACF_Data_Save
 
         $case_status = $_POST['acf']['field_66a5d36961b65'];
         if (isset($_POST['acf']['field_66d82c35b0042']) && $_POST['acf']['field_66d82c35b0042']) {
-            $is_concluded = true;
-            $start_date_field = $_POST['acf']['field_66d82c852304c'];
-            $end_date_field = $_POST['acf']['field_66d82d342304d'];
-            $this->case_status_period_field_handle($post_id, $case_status, $is_concluded, $start_date_field, $end_date_field);
+            $is_concluded = 'field_66a5d36961b65'; // Case status field so will going to be true
+            $start_date_field = 'field_66d82c852304c';
+            $end_date_field = 'field_66d82d342304d';
+            $this->case_status_period_field_handle($post_id, $case_status, $is_concluded, $start_date_field, $end_date_field, true);
         } else {
             CCT_Custom_Data_Handle::delete_status_date_data($post_id, $case_status);
         }
@@ -65,7 +65,7 @@ class CCT_Case_ACF_Data_Save
      * @param mixed $end end field name
      * @return int $id;
      */
-    public function case_status_period_field_handle($post_id, $case_status, $is_delay, $start, $end)
+    public function case_status_period_field_handle($post_id, $case_status, $is_delay, $start, $end, $is_concluded = false)
     {
         if (isset($_POST['acf'][$is_delay]) && $_POST['acf'][$is_delay]) {
             $start_date_obj = DateTime::createFromFormat('Ymd', $_POST['acf'][$start]);
@@ -73,7 +73,7 @@ class CCT_Case_ACF_Data_Save
 
             $end_date_obj = DateTime::createFromFormat('Ymd', $_POST['acf'][$end]);
             $end_date = $end_date_obj->format('Y-m-j');
-            return CCT_Custom_Data_Handle::update_case_status_period($post_id, $case_status, $start_date, $end_date);
+            return CCT_Custom_Data_Handle::update_case_status_period($post_id, $case_status, $start_date, $end_date, $is_concluded);
         } else {
             CCT_Custom_Data_Handle::delete_status_date_data($post_id, $case_status);
         }
@@ -85,13 +85,15 @@ class CCT_Case_ACF_Data_Save
     /**
      * Get Singleton instance of the class
      * 
-     * return CCT_Case_Data_Save
+     * return CCT_Case_ACF_Data_Save
      */
     public static function getInstance()
     {
         if (!isset(self::$_instance)) {
-            self::$_instance = new CCT_Custom_Data_Handle();
+            self::$_instance = new CCT_Case_ACF_Data_Save();
         }
         return self::$_instance;
     }
 }
+
+CCT_Case_ACF_Data_Save::getInstance();
