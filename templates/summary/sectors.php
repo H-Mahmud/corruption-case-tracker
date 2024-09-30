@@ -9,7 +9,7 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'sectors')
 <script>
 
     <?php
-    $case_sector = CCT_Utils::get_field_options('sector_of_the_case');
+    $case_sector = cct_get_choices('sector_of_the_case');
 
 
     $data = [];

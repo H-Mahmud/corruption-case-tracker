@@ -45,6 +45,7 @@ function cct_create_case_date_data_table()
 
 register_activation_hook(__FILE__, 'cct_create_case_date_data_table');
 
+include_once(CCT_PLUGIN_DIR_PATH . 'inc/functions.php');
 
 include_once(CCT_PLUGIN_DIR_PATH . 'inc/tools/class-case-import.php');
 include_once(CCT_PLUGIN_DIR_PATH . 'inc/tools/class-case-export.php');

@@ -9,7 +9,7 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'governments')
 <script>
 
     <?php
-    $governments = CCT_Utils::get_field_options('level_of_government');
+    $governments = cct_get_choices('level_of_government');
 
 
     $data = [];

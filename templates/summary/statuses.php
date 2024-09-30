@@ -9,7 +9,7 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'statuses')
 <script>
 
     <?php
-    $case_status = CCT_Utils::get_field_options('case_status');
+    $case_status = cct_get_choices('case_status');
 
 
     $data = [];

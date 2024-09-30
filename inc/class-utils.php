@@ -2,25 +2,6 @@
 if (!class_exists('CCT_Utils')) {
     class CCT_Utils
     {
-
-        /**
-         * Summary of get_field_options
-         * 
-         * Get ACF meta field dropdown options
-         * 
-         * @param string $field_key meta key
-         * @return array
-         */
-        public static function get_field_options($field_key)
-        {
-            $field = acf_get_field($field_key);
-            if ($field) {
-                return $field['choices'];
-            }
-            return [];
-        }
-
-
         /**
          * Generate Random RGBA colors
          * 

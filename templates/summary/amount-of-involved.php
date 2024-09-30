@@ -37,7 +37,7 @@ if (isset($_GET['involved_by']) && array_key_exists($_GET['involved_by'], $optio
         jQuery(document).ready(function ($) {
             <?php
 
-            $case_status = CCT_Utils::get_field_options('case_status');
+            $case_status = cct_get_choices('case_status');
 
 
             $data = [];

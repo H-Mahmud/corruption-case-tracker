@@ -9,7 +9,7 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'jurisdictions')
 <script>
 
     <?php
-    $jurisdictions = CCT_Utils::get_field_options('jurisdiction');
+    $jurisdictions = cct_get_choices('jurisdiction');
 
 
     $data = [];

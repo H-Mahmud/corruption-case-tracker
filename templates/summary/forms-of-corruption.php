@@ -8,7 +8,7 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'forms_of_corruption'
 
 <script>
     <?php
-    $forms_of_corruption = CCT_Utils::get_field_options('forms_of_corruption');
+    $forms_of_corruption = cct_get_choices('forms_of_corruption');
 
     $data = [];
     foreach ($forms_of_corruption as $key => $value) {
