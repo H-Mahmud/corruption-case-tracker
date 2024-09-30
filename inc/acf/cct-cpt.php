@@ -106,6 +106,10 @@ function cct_sanction_post_type()
             0 => 'title',
             1 => 'custom-fields',
         ),
+        'has_archive' => 'sanction',
+        'rewrite' => array(
+            'feeds' => false,
+        ),
         'delete_with_user' => false,
     ));
 }
