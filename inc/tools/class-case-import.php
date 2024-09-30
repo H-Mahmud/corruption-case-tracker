@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit();
 
-class CCT_Import_Cases
+class CCT_Case_Import
 {
     private static $_instances;
 
@@ -258,11 +258,11 @@ class CCT_Import_Cases
     public static function getInstance()
     {
         if (!isset(self::$_instances)) {
-            self::$_instances = new CCT_Import_Cases();
+            self::$_instances = new CCT_Case_Import();
         }
         return self::$_instances;
     }
 
 }
 
-CCT_Import_Cases::getInstance();
+CCT_Case_Import::getInstance();

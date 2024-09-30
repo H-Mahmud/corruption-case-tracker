@@ -5,7 +5,7 @@
 
         <?php if (isset($_GET['export-begin']) && $_GET['export-begin'] == true) {
 
-            CCT_Data_Export::getInstance();
+            CCT_Case_Export::getInstance();
         } else { ?>
             <form method="get" action="">
                 <table class="form-table">

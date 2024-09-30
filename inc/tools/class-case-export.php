@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') || exit();
 
-class CCT_Data_Export
+class CCT_Case_Export
 {
     private static $_instance = null;
 
@@ -153,7 +153,7 @@ class CCT_Data_Export
     public static function getInstance()
     {
         if (is_null(self::$_instance)) {
-            self::$_instance = new CCT_Data_Export();
+            self::$_instance = new CCT_Case_Export();
         }
         return self::$_instance;
     }
