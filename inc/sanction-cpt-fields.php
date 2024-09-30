@@ -1,61 +1,6 @@
 <?php
 defined('ABSPATH') || exit();
 
-
-/**
- * CPT Sanction Custom Post Type Register
- * 
- * @return void;
- */
-function cct_sanction_custom_post_type()
-{
-
-    register_post_type('sanction', array(
-        'labels' => array(
-            'name' => 'Sanctions',
-            'singular_name' => 'Sanction',
-            'menu_name' => 'Sanctions',
-            'all_items' => 'All Sanctions',
-            'edit_item' => 'Edit Sanction',
-            'view_item' => 'View Sanction',
-            'view_items' => 'View Sanctions',
-            'add_new_item' => 'Add New Sanction',
-            'add_new' => 'Add New Sanction',
-            'new_item' => 'New Sanction',
-            'parent_item_colon' => 'Parent Sanction:',
-            'search_items' => 'Search Sanctions',
-            'not_found' => 'No sanctions found',
-            'not_found_in_trash' => 'No sanctions found in Trash',
-            'archives' => 'Sanction Archives',
-            'attributes' => 'Sanction Attributes',
-            'insert_into_item' => 'Insert into sanction',
-            'uploaded_to_this_item' => 'Uploaded to this sanction',
-            'filter_items_list' => 'Filter sanctions list',
-            'filter_by_date' => 'Filter sanctions by date',
-            'items_list_navigation' => 'Sanctions list navigation',
-            'items_list' => 'Sanctions list',
-            'item_published' => 'Sanction published.',
-            'item_published_privately' => 'Sanction published privately.',
-            'item_reverted_to_draft' => 'Sanction reverted to draft.',
-            'item_scheduled' => 'Sanction scheduled.',
-            'item_updated' => 'Sanction updated.',
-            'item_link' => 'Sanction Link',
-            'item_link_description' => 'A link to a sanction.',
-        ),
-        'public' => true,
-        'show_in_rest' => true,
-        'menu_icon' => 'dashicons-clipboard',
-        'supports' => array(
-            0 => 'title',
-            1 => 'custom-fields',
-        ),
-        'delete_with_user' => false,
-    ));
-}
-;
-add_action('init', 'cct_sanction_custom_post_type');
-
-
 /**
  *  Custom Fields for Sanction
  * 
@@ -192,5 +137,4 @@ function cct_sanction_data_fields()
         'show_in_rest' => 0,
     ));
 }
-;
 add_action('acf/include_fields', 'cct_sanction_data_fields');
