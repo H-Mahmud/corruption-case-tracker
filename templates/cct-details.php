@@ -212,7 +212,7 @@ function get_delay_duration_statuses()
     foreach ($fields as $field) {
 
         if (get_field($field['is_delay'])) {
-            $bg_color = CCT_Utils::get_status_color($field['status']) . '33';
+            $bg_color = cct_get_status_color($field['status']) . '33';
 
             $start_date_key = get_field_object($field['start_date'])['_name'];
             $end_date_key = get_field_object($field['end_date'])['_name'];

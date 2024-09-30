@@ -2,62 +2,6 @@
 if (!class_exists('CCT_Utils')) {
     class CCT_Utils
     {
-        /**
-         * Generate Random RGBA colors
-         * 
-         * @return string
-         */
-        public static function get_rand_rgb_value()
-        {
-            // Generate three random values between 0 and 255
-            $r = rand(0, 255);
-            $g = rand(0, 255);
-            $b = rand(0, 255);
-
-            // Calculate the luminance of the color to check contrast
-            $luminance = (0.2126 * $r + 0.7152 * $g + 0.0722 * $b) / 255;
-
-            // If the luminance is too high (too bright) or too low (too dark), adjust the color
-            if ($luminance > 0.8) {
-                // If too bright, make it darker
-                $r = max(0, $r - 128);
-                $g = max(0, $g - 128);
-                $b = max(0, $b - 128);
-            } elseif ($luminance < 0.2) {
-                // If too dark, make it brighter
-                $r = min(255, $r + 128);
-                $g = min(255, $g + 128);
-                $b = min(255, $b + 128);
-            }
-
-            return sprintf("%d, %d, %d", $r, $g, $b);
-        }
-
-
-        public static function get_status_color($status)
-        {
-
-            $statuses_color = [
-                'alleged' => '#FF5733',             // Bright Red
-                // 'pending_investigation' => '#ffc552', // Bright Orange
-                'under_investigation' => '#3357FF',   // Bright Blue
-                'indictment_drawn' => '#33C3FF', // Magenta
-                'trial_court' => '#C70039', // Rich Red
-                'concluded_via_settlement' => '#52ff63',             // Bright Green
-                'concluded_via_dismissal' => '#5263ff',             // Bright Green
-                'concluded_guilty' => '#900C3F', // Deep Maroon
-                'concluded_not_guilty' => '#3498DB', // Bright Blue
-                'on_appeal_to_supreme_court' => '#8E44AD', // Strong Purple
-
-                // 'private_sector' => '#FFB533', // Warm Orange
-                // 'civil_society' => '#2E86C1',  // Vibrant Blue
-                // 'telecommunications' => '#2980B9', // Deep Sky Blue
-                // 'non_profit' => '#A569BD', // Light Purple
-            ];
-
-            return $statuses_color[$status] ?? '';
-        }
-
 
         /**
          * Update case status date on custom date table

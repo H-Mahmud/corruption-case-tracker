@@ -103,6 +103,7 @@
                 $query->the_post();
                 $status_field = get_field_object('case_status');
                 $status_label = '';
+                $status = '';
                 if ($status_field) {
                     $status = $status_field['value'];
                     $status_label = $status_field['choices'][$status] ?? '';
@@ -113,7 +114,7 @@
                     <?php the_post_thumbnail(); ?>
                     <div class="meta-info">
                         <span class="date"><?php the_date(); ?></span>
-                        <span class="status" <?php $status_color = CCT_Utils::get_status_color($status_field['value']); ?>
+                        <span class="status" <?php $status_color = cct_get_status_color($status); ?>
                             style="background-color: <?php echo $status_color; ?>33;"><?php echo $status_label; ?></span>
                     </div>
                     <?php the_title('<h2 class="title"><a href="' . get_permalink() . '">', '</a></h2>'); ?>
