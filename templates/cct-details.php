@@ -90,11 +90,15 @@
     </tr>
     <tr>
         <th>Sector of the Case</th>
-        <td>
+        <td class="form-of-corruption">
             <?php
             $option = get_field_object('sector_of_the_case');
-            if ($option) {
-                echo $option['choices'][$option['value']] ?? '';
+            foreach ($option['value'] as $value) {
+                $badge = $option['choices'][$value] ?? false;
+
+                if ($badge) {
+                    echo '<span>' . $badge . '</span>';
+                }
             }
             ?>
         </td>

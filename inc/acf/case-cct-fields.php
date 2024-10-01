@@ -334,7 +334,7 @@ function cct_case_data_fields()
                     ),
                     'default_value' => 'health',
                     'return_format' => 'value',
-                    'multiple' => 0,
+                    'multiple' => 1,
                     'allow_null' => 0,
                     'ui' => 0,
                     'ajax' => 0,
