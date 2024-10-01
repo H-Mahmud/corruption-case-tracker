@@ -24,8 +24,8 @@
     </tr>
 
     <?php
-    $case_status = get_field('case_status');
-    if ($case_status == 'concluded_guilty' || $case_status == 'concluded_not_guilty') { ?>
+    $chart_show_by = get_field('case_status');
+    if ($chart_show_by == 'concluded_guilty' || $chart_show_by == 'concluded_not_guilty') { ?>
         <tr>
             <th>Judge</th>
             <td><?php the_field('judge'); ?></td>
@@ -48,8 +48,8 @@
         </td>
     </tr>
     <?php
-    $case_status = get_field(selector: 'case_status');
-    if ($case_status == 'concluded_guilty' || $case_status == 'concluded_via_settlement') { ?>
+    $chart_show_by = get_field(selector: 'case_status');
+    if ($chart_show_by == 'concluded_guilty' || $chart_show_by == 'concluded_via_settlement') { ?>
         <tr>
             <th>Amount Recovered</th>
             <td><?php the_field('amount_recovered'); ?></td>

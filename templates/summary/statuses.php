@@ -9,11 +9,11 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'statuses')
 <script>
 
     <?php
-    $case_status = cct_get_choices('case_status');
+    $chart_show_by = cct_get_choices('case_status');
 
 
     $data = [];
-    foreach ($case_status as $key => $value) {
+    foreach ($chart_show_by as $key => $value) {
         $data[$value] = CCT_Case_Analyze::get_all_cases_count_for_meta('case_status', $key);
     }
 

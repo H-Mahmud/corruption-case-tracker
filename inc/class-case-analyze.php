@@ -143,5 +143,35 @@ class CCT_Case_Analyze
 
         return $query->found_posts;
     }
+
+
+
+    /**
+     * Get total amount involved for given case meta
+     * 
+     * @param string $meta_key case meta key
+     * @param string $meta_value case meta value
+     * @param string $involved_key meta key for amount involved
+     * @param string $value_compare operator for comparing meta values. Default is '='.
+     * @return int total amount involved
+     */
+    public static function get_amount_involved($meta_key, $meta_value, $involved_key, $value_compare = '=')
+    {
+        global $wpdb;
+        $query = $wpdb->prepare("
+        SELECT SUM(pm2.meta_value) as total_involved
+        FROM {$wpdb->posts} as p
+        JOIN {$wpdb->postmeta} as pm1 ON p.ID = pm1.post_id
+        JOIN {$wpdb->postmeta} as pm2 ON p.ID = pm2.post_id
+        WHERE p.post_type = 'case'
+        AND p.post_status = 'publish'
+        AND pm1.meta_key = %s
+        AND pm1.meta_value $value_compare %s
+        AND pm2.meta_key = %s
+    ", $meta_key, $meta_value, $involved_key);
+
+        $result = $wpdb->get_var($query);
+        return $result ? $result : 0;
+    }
 }
 

@@ -3,21 +3,36 @@
 if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'amount_of_involved')
     return;
 
-$options = ['case_status' => 'Case Status', 'forms_of_corruption' => 'Forms of Corruption'];
+$options = [
+    'sector_of_the_case' => 'Sector of the Case',
+    'jurisdiction' => 'Jurisdiction',
+    'case_status' => 'Case Status',
+    'level_of_government' => 'Government Level',
+    'forms_of_corruption' => 'Forms of Corruption'
+];
 
 $involved_by = 'case_status';
 if (isset($_GET['involved_by']) && array_key_exists($_GET['involved_by'], $options)) {
-    $involved_by = $_GET['involved_by'];
+    $involved_by = sanitize_key($_GET['involved_by']);
 }
 
+$involved_amount_key = 'amount_involved_usd';
+$currency = 'USD';
+if (isset($_GET['currency']) && $_GET['currency'] === 'LRD') {
+    $involved_amount_key = 'amount_involved_lrd';
+    $currency == 'LRD';
+}
 
+$compare = '=';
+if ($involved_by == 'forms_of_corruption' || $involved_by == 'sector_of_the_case') {
+    $compare = 'LIKE';
+}
 ?>
 <form method="get" class="filter-for-year">
     <input type="hidden" name="summary_by" value="amount_of_involved">
     <label for="involvedBy">
         Filter Amount of Involved By
         <select name="involved_by" id="involvedBy">
-
             <?php foreach ($options as $key => $label) {
                 $selected = selected($key, $involved_by);
                 echo <<<HTML
@@ -27,98 +42,51 @@ if (isset($_GET['involved_by']) && array_key_exists($_GET['involved_by'], $optio
             ?>
         </select>
     </label>
+    <label for="currency">
+        Currency
+        <select name="currency" id="currency">
+            <option value="USD" <?php selected($currency, 'USD'); ?>>USD</option>
+            <option value="LRD" <?php selected($currency, 'LRD'); ?>>LRD</option>
+        </select>
+    </label>
     <button class="filter-btn" type="Submit">Filter</button>
-
 </form>
 
 <canvas id="amountOfInvolvedChart" style="width:100%;max-width:100%"></canvas>
-<?php if ($involved_by == 'case_status') { ?>
-    <script>
-        jQuery(document).ready(function ($) {
-            <?php
+<script>
+    jQuery(document).ready(function ($) {
+        <?php
+        $chart_show_by = cct_get_choices($involved_by);
+        $data = [];
+        foreach ($chart_show_by as $key => $value) {
+            $data[$value] = CCT_Case_Analyze::get_amount_involved(
+                $involved_by,
+                cct_meta_query_value($key, $compare),
+                $involved_amount_key,
+                $compare
+            );
+        }
+        ?>
+        const data = {
+            datasets: [{
+                label: 'Amount (<?php echo $currency; ?>)',
+                data: <?php echo json_encode($data); ?>,
+            }]
+        };
+        const config = {
+            type: 'bar',
+            data: data,
+        };
 
-            $case_status = cct_get_choices('case_status');
-
-
-            $data = [];
-            foreach ($case_status as $key => $value) {
-                $data[$value] = CCT_Case_Analyze::get_all_cases_count_for_meta('case_status', $key);
-            }
-
-            ?>
-            const data = {
-                datasets: [{
-                    label: 'Involved',
-                    data: <?php echo json_encode($data); ?>,
-                }]
-            };
-
-            const config = {
-                type: 'bar',
-                data: data,
-
-            };
-
-            new Chart("amountOfInvolvedChart", config);
-
-        })
-    </script>
-<?php }
-
-function cct_get_case_involved_count($meta_key, $meta_value)
+        new Chart("amountOfInvolvedChart", config);
+    })
+</script>
+<?php
+function cct_meta_query_value($value, $compare)
 {
-    $args = array(
-        'post_type' => 'case',
-        'meta_key' => $meta_key,
-        'meta_value' => $meta_value,
-        'posts_per_page' => -1,
-        'fields' => 'ids',
-    );
-
-    $query = new WP_Query($args);
-
-    return $query->found_posts;
+    if ($compare === 'LIKE') {
+        return '%' . $value . '%';
+    } else {
+        return $value;
+    }
 }
-
-
-function get_sum_of_involved_by($meta_key, $meta_value)
-{
-    global $wpdb;
-
-    // // Query to get the sum of 'involved' values grouped by 'case_sector'
-    // $query = "
-    //             SELECT pm1.meta_value as case_sector, SUM(pm2.meta_value) as total_involved
-    //             FROM {$wpdb->posts} as p
-    //             JOIN {$wpdb->postmeta} as pm1 ON p.ID = pm1.post_id
-    //             JOIN {$wpdb->postmeta} as pm2 ON p.ID = pm2.post_id
-    //             WHERE p.post_type = 'case'
-    //             AND pm1.meta_key = 'sector_of_the_case'
-    //             AND pm2.meta_key = 'amount_involved'
-    //             GROUP BY pm1.meta_value
-    //         ";
-
-    // $results = $wpdb->get_results($query);
-
-    $query = $wpdb->prepare("
-    SELECT SUM(CAST(pm2.meta_value AS SIGNED)) as total_involved
-    FROM {$wpdb->posts} as p
-    JOIN {$wpdb->postmeta} as pm1 ON p.ID = pm1.post_id
-    JOIN {$wpdb->postmeta} as pm2 ON p.ID = pm2.post_id
-    WHERE p.post_type = 'case'
-    AND pm1.meta_key = %s
-    AND pm1.meta_value = %s
-    AND pm2.meta_key = 'amount_involved'
-     AND pm2.meta_value REGEXP '^-?[0-9]+$' -- Ensure the value is a valid integer
-", $meta_key, $meta_value);
-
-    // Get the result
-    $result = $wpdb->get_var($query);
-
-    var_dump($result);
-
-    // Return the sum of 'involved' for the specific 'case_sector'
-    return $result ? $result : 0;
-}
-
-// var_dump(get_sum_of_involved_by('sector_of_the_case', 'health'));
-
