@@ -290,7 +290,7 @@ function cct_case_data_fields()
                     ),
                     'choices' => array(
                         'health' => 'Health',
-                        'agriculture' => 'Agriculture',
+                        'extractives' => 'Extractives',
                         'infrastructure' => 'Infrastructure',
                         'land' => 'Land',
                         'education' => 'Education',
