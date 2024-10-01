@@ -18,9 +18,9 @@ if (isset($_GET['involved_by']) && array_key_exists($_GET['involved_by'], $optio
 
 $involved_amount_key = 'amount_involved_usd';
 $currency = 'USD';
-if (isset($_GET['currency']) && $_GET['currency'] === 'LRD') {
+if (isset($_GET['currency']) && $_GET['currency'] == 'LRD') {
     $involved_amount_key = 'amount_involved_lrd';
-    $currency == 'LRD';
+    $currency = 'LRD';
 }
 
 $compare = '=';
