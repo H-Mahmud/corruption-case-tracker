@@ -115,6 +115,12 @@ function cct_case_properties($content)
         $custom_content = '[cct-details]';
         $custom_content .= $content;
         return $custom_content;
+    } elseif (is_single() && 'sanction' == get_post_type()) {
+        ob_start();
+        include(plugin_dir_path(__FILE__) . 'templates/cct-sanction-details.php');
+        $sanction_detail = ob_get_contents();
+        ob_clean();
+        return $sanction_detail . $content;
     } else {
         return $content;
     }
