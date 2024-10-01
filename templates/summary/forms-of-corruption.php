@@ -12,7 +12,7 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'forms_of_corruption'
 
     $data = [];
     foreach ($forms_of_corruption as $key => $value) {
-        $data[$value] = cct_get_form_of_corruption_count('forms_of_corruption', $key);
+        $data[$value] = CCT_Case_Analyze::get_all_cases_count_for_meta('forms_of_corruption', $key, 'LIKE');
     }
 
     ?>
@@ -31,21 +31,3 @@ if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'forms_of_corruption'
 
     new Chart("formsOfCorruptionChart", config);
 </script>
-
-<?php
-
-function cct_get_form_of_corruption_count($meta_key, $meta_value)
-{
-    $args = array(
-        'post_type' => 'case',
-        'meta_key' => $meta_key,
-        'meta_value' => $meta_value,
-        'meta_compare' => 'LIKE',
-        'posts_per_page' => -1,
-        'fields' => 'ids',
-    );
-
-    $query = new WP_Query($args);
-
-    return $query->found_posts;
-}
