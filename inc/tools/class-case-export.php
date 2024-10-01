@@ -36,10 +36,10 @@ class CCT_Case_Export
             $metadata_columns[] = $field['name'];
         }
 
-        $fields2 = acf_get_fields('group_66da7dac64b89');
-        foreach ($fields2 as $field) {
-            $metadata_columns[] = $field['name'];
-        }
+        // $fields2 = acf_get_fields('group_66da7dac64b89');
+        // foreach ($fields2 as $field) {
+        //     $metadata_columns[] = $field['name'];
+        // }
 
         $csv_columns = array_merge($csv_columns, $metadata_columns);
 
@@ -57,9 +57,9 @@ class CCT_Case_Export
                     $metadata[] = is_string(get_field($field['name'])) ? get_field($field['name']) : '';
                 }
 
-                foreach ($fields2 as $field) {
-                    $metadata[] = is_string(get_field($field['name'])) ? get_field($field['name']) : '';
-                }
+                // foreach ($fields2 as $field) {
+                //     $metadata[] = is_string(get_field($field['name'])) ? get_field($field['name']) : '';
+                // }
 
                 // Prepare row data
                 $row_data = array(

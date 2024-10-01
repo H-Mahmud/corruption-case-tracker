@@ -106,16 +106,16 @@ class CCT_Case_Import
         }
 
         // Delay duration
-        $options .= '<optgroup label="Delay Duration">';
-        foreach ($fields2 as $field) {
-            $name = $field['name'];
-            $label = $field['label'];
-            $selected = $column == $name ? 'selected' : '';
-            $options .= <<<HTML
-                <option value="$name" $selected>$label</option>
-            HTML;
-        }
-        $options .= '</optgroup>';
+        // $options .= '<optgroup label="Delay Duration">';
+        // foreach ($fields2 as $field) {
+        //     $name = $field['name'];
+        //     $label = $field['label'];
+        //     $selected = $column == $name ? 'selected' : '';
+        //     $options .= <<<HTML
+        //         <option value="$name" $selected>$label</option>
+        //     HTML;
+        // }
+        // $options .= '</optgroup>';
 
         return $options;
     }
