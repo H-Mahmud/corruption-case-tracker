@@ -88,20 +88,6 @@ class CCT_Case_Export
 
     public function get_export_query()
     {
-
-
-        // $args = array(
-        //     'post_type' => 'case',
-        //     'posts_per_page' => -1,
-        //     // 'meta_query' => array(
-        //     //     array(
-        //     //         'key' => $meta_key,
-        //     //         'value' => $meta_value,
-        //     //     ),
-        //     // ),
-        // );
-
-
         $query['post_type'] = 'case';
         $query['meta_query']['relation'] = 'AND';
 
@@ -114,19 +100,14 @@ class CCT_Case_Export
         $jurisdiction_filter = $this->get_filter('jurisdiction');
         $jurisdiction_filter && array_push($meta_query_filter, $jurisdiction_filter);
 
-        $section_filter = $this->get_filter('sector_of_the_case');
+        $section_filter = $this->get_filter('sector_of_the_case', 'LIKE');
         $section_filter && array_push($meta_query_filter, $section_filter);
 
         $level_of_government_filter = $this->get_filter('level_of_government');
         $level_of_government_filter && array_push($meta_query_filter, $level_of_government_filter);
 
-        // $forms_of_corruption_filter = $this->get_filter('forms_of_corruption');
-        $forms_of_corruption_filter = isset($_GET['forms_of_corruption']);
-        $forms_of_corruption_filter && array_push($meta_query_filter, [
-            'key' => 'forms_of_corruption',
-            'value' => $_GET['forms_of_corruption'],
-            'compare' => 'LIKE',
-        ]);
+        $forms_of_corruption_filter = $this->get_filter('forms_of_corruption', 'LIKE');
+        $forms_of_corruption_filter && array_push($meta_query_filter, $forms_of_corruption_filter);
 
 
         $query['meta_query'][] = $meta_query_filter;
@@ -135,7 +116,7 @@ class CCT_Case_Export
     }
 
 
-    public function get_filter($key)
+    public function get_filter($key, $compare = '=')
     {
         if (!isset($_GET[$key]) || empty($_GET[$key]))
             return false;
@@ -145,7 +126,7 @@ class CCT_Case_Export
         return [
             'key' => $key,
             'value' => $value,
-            'compare' => '=',
+            'compare' => $compare,
         ];
 
     }
