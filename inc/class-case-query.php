@@ -18,7 +18,7 @@ if (!class_exists('CCT_Case_Query')) {
             // Set Post type
             $query['post_type'] = 'case';
 
-            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+            $paged = $paged = isset($_GET['c-page']) ? sanitize_text_field($_GET['c-page']) : 1;
 
             $query['posts_per_page'] = 10;
             $query['paged'] = $paged;

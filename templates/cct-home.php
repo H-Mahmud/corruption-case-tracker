@@ -125,14 +125,15 @@
             ?>
         </div>
         <?php
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $paged = isset($_GET['c-page']) ? sanitize_text_field($_GET['c-page']) : 1;
+        $home_url = home_url();
 
         // Pagination Links
         echo '<div class="cct-pagination">';
 
         // Previous Page Link
         if ($paged > 1) {
-            echo '<a class="page" href="' . get_pagenum_link($paged - 1) . '">Previous</a>';
+            echo '<a class="page" href="' . add_query_arg('c-page', $paged - 1, $home_url) . '">Previous</a>';
         }
 
         // Page Numbers
@@ -140,13 +141,13 @@
             if ($i == $paged) {
                 echo '<span class="page">' . $i . '</span>';
             } else {
-                echo '<a class="page" href="' . get_pagenum_link($i) . '">' . $i . '</a>';
+                echo '<a class="page" href="' . add_query_arg('c-page', $i, $home_url) . '">' . $i . '</a>';
             }
         }
 
         // Next Page Link
         if ($paged < $query->max_num_pages) {
-            echo '<a class="page" href="' . get_pagenum_link($paged + 1) . '">Next</a>';
+            echo '<a class="page" href="' . add_query_arg('c-page', $paged + 1, $home_url) . '">Next</a>';
         }
 
         echo '</div>';
