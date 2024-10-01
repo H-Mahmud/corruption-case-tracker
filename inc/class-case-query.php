@@ -35,8 +35,8 @@ if (!class_exists('CCT_Case_Query')) {
             $jurisdiction_filter = $this->get_filter('jurisdiction');
             $jurisdiction_filter && array_push($meta_query_filter, $jurisdiction_filter);
 
-            $section_filter = $this->get_filter('sector_of_the_case');
-            $section_filter && array_push($meta_query_filter, $section_filter);
+            $sector_filter = $this->get_filter('sector_of_the_case', 'LIKE');
+            $sector_filter && array_push($meta_query_filter, $sector_filter);
 
             $level_of_government_filter = $this->get_filter('level_of_government');
             $level_of_government_filter && array_push($meta_query_filter, $level_of_government_filter);
