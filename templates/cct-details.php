@@ -32,14 +32,21 @@
         </tr>
     <?php } ?>
 
-    <?php
-    if (get_field('amount_involved')) { ?>
-        <tr>
-            <th>Amount Involved</th>
-            <td><?php the_field('amount_involved'); ?></td>
-        </tr>
-    <?php } ?>
-
+    <tr>
+        <th>Amount Involved</th>
+        <td>
+            <span class="currency-badge">
+                <?php $amount = get_field('amount_involved_usd');
+                echo '$' . number_format($amount, 2, '.', ','); ?>
+                USD
+            </span>
+            <span class="currency-badge">
+                <?php $amount = get_field('amount_involved_lrd');
+                echo '$' . number_format($amount, 2, '.', ','); ?>
+                LRD
+            </span>
+        </td>
+    </tr>
     <?php
     $case_status = get_field(selector: 'case_status');
     if ($case_status == 'concluded_guilty' || $case_status == 'concluded_via_settlement') { ?>
