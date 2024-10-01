@@ -37,12 +37,12 @@
         <td>
             <span class="currency-badge">
                 <?php $amount = get_field('amount_involved_usd');
-                echo '$' . number_format($amount, 2, '.', ','); ?>
+                echo '$' . number_format(intval($amount), 2, '.', ','); ?>
                 USD
             </span>
             <span class="currency-badge">
                 <?php $amount = get_field('amount_involved_lrd');
-                echo '$' . number_format($amount, 2, '.', ','); ?>
+                echo '$' . number_format(intval($amount), 2, '.', ','); ?>
                 LRD
             </span>
         </td>
