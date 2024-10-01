@@ -76,7 +76,7 @@ function cct_sanction_data_fields()
             ),
             array(
                 'key' => 'field_66fa34014cf67',
-                'label' => 'reason for Sanction',
+                'label' => 'Reason for Sanction',
                 'name' => 'reason_for_sanction',
                 'aria-label' => '',
                 'type' => 'text',
