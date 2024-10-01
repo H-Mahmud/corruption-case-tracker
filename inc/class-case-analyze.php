@@ -128,12 +128,13 @@ class CCT_Case_Analyze
      * @param string $meta_value
      * @return int|mixed
      */
-    public static function get_all_cases_count_for_meta($meta_key, $meta_value)
+    public static function get_all_cases_count_for_meta($meta_key, $meta_value, $compare = '=')
     {
         $args = array(
             'post_type' => 'case',
             'meta_key' => $meta_key,
             'meta_value' => $meta_value,
+            'meta_compare' => $compare,
             'posts_per_page' => -1,
             'fields' => 'ids',
         );
