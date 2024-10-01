@@ -61,8 +61,11 @@ include_once(plugin_dir_path(__FILE__) . 'inc/class-cct-admin.php');
 include_once(CCT_PLUGIN_DIR_PATH . 'inc/class-custom-data-handle.php');
 include_once(CCT_PLUGIN_DIR_PATH . 'inc/class-case-data-save.php');
 
+include_once(CCT_PLUGIN_DIR_PATH . 'inc/hooks.php');
+
 if (!function_exists('cct_home_cb')) {
     add_shortcode('cct-home', 'cct_home_cb');
+
     function cct_home_cb()
     {
         ob_start();
