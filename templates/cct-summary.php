@@ -14,6 +14,8 @@
         </option>
         <option value="amount_involved" <?php selected($summary_by, 'amount_involved'); ?>>Amount Involved
         </option>
+        <option value="amount_recovered" <?php selected($summary_by, 'amount_recovered'); ?>>Amount Recovered
+        </option>
         <option value="average-duration" <?php selected($summary_by, 'average-duration'); ?>>Average
             Duration</option>
         <option value="average-delay-duration" <?php selected($summary_by, 'average-delay-duration'); ?>>Average Delay
@@ -30,6 +32,7 @@
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/jurisdictions.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/forms-of-corruption.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/amount-involved.php'; ?>
+    <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/amount-recovered.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/average-duration.php'; ?>
     <?php include_once CCT_PLUGIN_DIR_PATH . 'templates/summary/average-delay-duration.php'; ?>
 </div>
