@@ -20,7 +20,7 @@ if (!class_exists('CCT_Case_Query')) {
 
             $paged = $paged = isset($_GET['c-page']) ? sanitize_text_field($_GET['c-page']) : 1;
 
-            $query['posts_per_page'] = 10;
+            $query['posts_per_page'] = 12;
             $query['paged'] = $paged;
 
 
