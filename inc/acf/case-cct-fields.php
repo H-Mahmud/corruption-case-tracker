@@ -85,8 +85,8 @@ function cct_case_data_fields()
                 ),
                 array(
                     'key' => 'field_66ebca91dd4c9',
-                    'label' => 'Amount Recovered',
-                    'name' => 'amount_recovered',
+                    'label' => 'Amount Recovered (USD)',
+                    'name' => 'amount_recovered_usd',
                     'aria-label' => '',
                     'type' => 'number',
                     'instructions' => '',
@@ -108,7 +108,45 @@ function cct_case_data_fields()
                         ),
                     ),
                     'wrapper' => array(
-                        'width' => '',
+                        'width' => '50',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'min' => '',
+                    'max' => '',
+                    'allow_in_bindings' => 1,
+                    'placeholder' => '',
+                    'step' => '',
+                    'prepend' => '',
+                    'append' => '',
+                ),
+                array(
+                    'key' => 'field_66ebca9ddd4c9',
+                    'label' => 'Amount Recovered (LRD)',
+                    'name' => 'amount_recovered_lrd',
+                    'aria-label' => '',
+                    'type' => 'number',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_66a5d36961b65',
+                                'operator' => '==',
+                                'value' => 'concluded_guilty',
+                            ),
+                        ),
+                        array(
+                            array(
+                                'field' => 'field_66a5d36961b65',
+                                'operator' => '==',
+                                'value' => 'concluded_via_settlement',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '50',
                         'class' => '',
                         'id' => '',
                     ),
