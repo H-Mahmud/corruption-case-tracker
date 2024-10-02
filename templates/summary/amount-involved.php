@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') || exit();
 
-if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'amount_of_involved')
+if (!isset($_GET['summary_by']) || $_GET['summary_by'] !== 'amount_involved')
     return;
 
 $options = [
@@ -29,7 +29,7 @@ if ($involved_by == 'forms_of_corruption' || $involved_by == 'sector_of_the_case
 }
 ?>
 <form method="get" class="filter-for-year">
-    <input type="hidden" name="summary_by" value="amount_of_involved">
+    <input type="hidden" name="summary_by" value="amount_involved">
     <label for="involvedBy">
         Filter Amount of Involved By
         <select name="involved_by" id="involvedBy">
