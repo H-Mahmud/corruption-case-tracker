@@ -104,3 +104,21 @@ function cct_get_status_attr()
         ]
     ];
 }
+
+
+/**
+ * Modifies a meta query value based on its comparison operator.
+ *
+ * @param string $value   The value to modify.
+ * @param string $compare The comparison operator.
+ *
+ * @return string The modified value.
+ */
+function cct_meta_query_value($value, $compare)
+{
+    if ($compare === 'LIKE') {
+        return '%' . $value . '%';
+    } else {
+        return $value;
+    }
+}

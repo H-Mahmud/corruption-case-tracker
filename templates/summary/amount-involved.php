@@ -81,12 +81,3 @@ if ($involved_by == 'forms_of_corruption' || $involved_by == 'sector_of_the_case
         new Chart("amountOfInvolvedChart", config);
     })
 </script>
-<?php
-function cct_meta_query_value($value, $compare)
-{
-    if ($compare === 'LIKE') {
-        return '%' . $value . '%';
-    } else {
-        return $value;
-    }
-}
