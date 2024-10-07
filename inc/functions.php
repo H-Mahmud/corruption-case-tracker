@@ -122,3 +122,22 @@ function cct_meta_query_value($value, $compare)
         return $value;
     }
 }
+
+
+/**
+ * Gets the current URL.
+ *
+ * @return string The current URL.
+ */
+function get_current_url()
+{
+    // Get the protocol (HTTP or HTTPS)
+    $protocol = is_ssl() ? 'https://' : 'http://';
+
+    // Get the host (domain name) and the request URI
+    $host = $_SERVER['HTTP_HOST'];
+    $request_uri = $_SERVER['REQUEST_URI'];
+
+    // Combine them to form the full URL
+    return $protocol . $host . $request_uri;
+}

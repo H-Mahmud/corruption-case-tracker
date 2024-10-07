@@ -109,7 +109,7 @@
                     $status_label = $status_field['choices'][$status] ?? '';
                 }
 
-                ?>
+            ?>
                 <article class="case-card">
                     <?php the_post_thumbnail(); ?>
                     <div class="meta-info">
@@ -120,13 +120,14 @@
                     <?php the_title('<h2 class="title"><a href="' . get_permalink() . '">', '</a></h2>'); ?>
                     <div class="summary"><?php the_field('nature_of_the_case'); ?></div>
                 </article>
-                <?php
+            <?php
             }
             ?>
         </div>
-        <?php
+    <?php
         $paged = isset($_GET['c-page']) ? sanitize_text_field($_GET['c-page']) : 1;
         $home_url = home_url();
+        $home_url = get_current_url();
 
         // Pagination Links
         echo '<div class="cct-pagination">';
@@ -154,8 +155,6 @@
 
         // Reset post data
         wp_reset_postdata();
-
-
     } else {
         echo '<h2>Not found</h2>';
     }
