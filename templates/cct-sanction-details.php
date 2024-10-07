@@ -13,7 +13,7 @@
         </td>
     </tr>
     <tr>
-        <th>reason for Sanction</th>
+        <th>Reason for Sanction</th>
         <td><?php the_field('reason_for_sanction'); ?> </td>
     </tr>
     <tr>
