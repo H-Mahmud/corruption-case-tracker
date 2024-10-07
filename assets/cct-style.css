@@ -83,10 +83,11 @@
     display: flex;
     justify-content: center;
     gap: 8px;
+    margin-bottom: 12px;
 }
 
 .cct-pagination a.page {
-    background-color: #FFF;
+    /* background-color: #FFF; */
     display: inline-block;
     padding: 12px;
     border-radius: 8px;
