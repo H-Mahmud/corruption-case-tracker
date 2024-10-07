@@ -179,6 +179,18 @@
     height: 25px;
 }
 
+.sanction-search .cct-search-form {
+    justify-content: center;
+}
+
+.sanction-search .page-title {
+    text-align: center;
+}
+
+body.post-type-archive-sanction .no-results.not-found {
+    display: none;
+}
+
 @media screen and (max-width: 1199px) {
     .cct-search-form {
         flex-direction: column;
