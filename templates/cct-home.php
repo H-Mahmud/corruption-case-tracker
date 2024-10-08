@@ -161,3 +161,16 @@
     ?>
 
 </div>
+<script>
+    jQuery(document).ready(function($) {
+        const non_level_of_government_sectors = ['private_sector', 'non_profit']
+        const level_of_government = $('#levelOfGovernment');
+        $('#sector_of_the_case').on('change', function() {
+            if (non_level_of_government_sectors.includes($(this).val())) {
+                level_of_government.prop('disabled', true);
+            } else {
+                level_of_government.prop('disabled', false);
+            }
+        })
+    })
+</script>
