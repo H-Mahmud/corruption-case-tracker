@@ -65,16 +65,16 @@
     <?php } ?>
     <?php
     if (get_delay_duration_statuses()) {
-        ?>
+    ?>
         <tr>
-            <th>Delay Duration</th>
+            <th>Duration</th>
             <td class="delay-status">
                 <?php
                 echo get_delay_duration_statuses();
                 ?>
             </td>
         </tr>
-        <?php
+    <?php
     }
     ?>
     <tr>
@@ -244,14 +244,12 @@ function get_delay_duration_statuses()
                 $badged .= <<<HTML
                     <span style="background-color: $bg_color;">$label</span>
                 HTML;
-
             } else {
                 $label = $start . ' Started ' . $status;
                 $badged .= <<<HTML
                     <span style="background-color: $bg_color;">$label</span>
                 HTML;
             }
-
         }
     }
     return $badged;
