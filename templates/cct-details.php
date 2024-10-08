@@ -103,17 +103,20 @@
             ?>
         </td>
     </tr>
-    <tr>
-        <th>Level of Government</th>
-        <td>
-            <?php
-            $option = get_field_object('level_of_government');
-            if ($option) {
-                echo $option['choices'][$option['value']];
-            }
-            ?>
-        </td>
-    </tr>
+    <?php
+    if (get_field('level_of_government')) { ?>
+        <tr>
+            <th>Level of Government</th>
+            <td>
+                <?php
+                $option = get_field_object('level_of_government');
+                if ($option) {
+                    echo $option['choices'][$option['value']];
+                }
+                ?>
+            </td>
+        </tr>
+    <?php } ?>
     <tr class="form-of-corruption">
         <th>Forms of Corruption</th>
         <td>

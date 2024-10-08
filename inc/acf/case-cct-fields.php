@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Register Custom fields for case post type to store case data
  * 
@@ -407,8 +408,7 @@ function cct_case_data_fields()
                         'money_laundering' => 'Money Laundering',
                         'tax_evasion' => 'Tax Evasion',
                     ),
-                    'default_value' => array(
-                    ),
+                    'default_value' => array(),
                     'return_format' => 'value',
                     'multiple' => 1,
                     'allow_null' => 0,
@@ -436,12 +436,12 @@ function cct_case_data_fields()
                         'county' => 'County',
                         'municipal' => 'Municipal',
                         'district' => 'District',
-                        'town' => 'Town'
+                        'town' => 'Town',
                     ),
-                    'default_value' => 'national',
+                    'default_value' => false,
                     'return_format' => 'value',
                     'multiple' => 0,
-                    'allow_null' => 0,
+                    'allow_null' => 1,
                     'ui' => 0,
                     'ajax' => 0,
                     'placeholder' => '',
@@ -836,8 +836,7 @@ function cct_case_data_fields()
             'show_in_rest' => 0,
         )
     );
-}
-;
+};
 add_action('acf/include_fields', 'cct_case_data_fields');
 
 
@@ -1543,7 +1542,5 @@ function cct_case_delay_date_fields()
         'description' => '',
         'show_in_rest' => 0,
     ));
-
-
 }
 add_action('acf/include_fields', 'cct_case_delay_date_fields');
