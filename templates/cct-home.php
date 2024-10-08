@@ -170,12 +170,18 @@
     jQuery(document).ready(function($) {
         const non_level_of_government_sectors = ['private_sector', 'non_profit']
         const level_of_government = $('#levelOfGovernment');
+        updateGovernmentFieldStatus($('#sector_of_the_case').val());
+
         $('#sector_of_the_case').on('change', function() {
-            if (non_level_of_government_sectors.includes($(this).val())) {
+            updateGovernmentFieldStatus($(this).val());
+        })
+
+        function updateGovernmentFieldStatus(value) {
+            if (non_level_of_government_sectors.includes(value)) {
                 level_of_government.prop('disabled', true);
             } else {
                 level_of_government.prop('disabled', false);
             }
-        })
+        }
     })
 </script>
