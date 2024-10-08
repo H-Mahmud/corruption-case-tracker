@@ -118,7 +118,12 @@
                             style="background-color: <?php echo $status_color; ?>33;"><?php echo $status_label; ?></span>
                     </div>
                     <?php the_title('<h2 class="title"><a href="' . get_permalink() . '">', '</a></h2>'); ?>
-                    <div class="summary"><?php the_field('nature_of_the_case'); ?></div>
+                    <div class="summary">
+                        <?php
+                        if (get_field('nature_of_the_case')) {
+                            echo cct_slice_text(get_field('nature_of_the_case'), 200);
+                        } ?>
+                    </div>
                 </article>
             <?php
             }

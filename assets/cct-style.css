@@ -89,6 +89,10 @@
     color: #1D2939;
 }
 
+.case-card .summary {
+    text-align: justify;
+}
+
 .cct-pagination {
     margin-top: 32px;
     display: flex;

@@ -141,3 +141,20 @@ function get_current_url()
     // Combine them to form the full URL
     return $protocol . $host . $request_uri;
 }
+
+/**
+ * Slices a given text string to a given limit and appends "..." if the text is longer than the limit.
+ *
+ * @param string $text The text to slice.
+ * @param int $limit The length limit of the text.
+ *
+ * @return string The sliced text.
+ */
+function cct_slice_text($text, $limit = 100)
+{
+    if (strlen($text) > $limit) {
+        return substr($text, 0, $limit) . '...';
+    } else {
+        return $text;
+    }
+}
