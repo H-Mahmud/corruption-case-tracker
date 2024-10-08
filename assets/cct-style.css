@@ -47,6 +47,17 @@
     padding: 32px 24px;
 }
 
+.case-card .cct-thumbnail {
+    height: 220px;
+    width: 100%;
+    background-color: #eee;
+}
+
+.case-card .cct-thumbnail img {
+    height: 100%;
+    object-fit: contain;
+}
+
 .case-card .meta-info {
     display: flex;
     justify-content: space-between;
