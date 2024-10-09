@@ -321,6 +321,7 @@ function cct_case_data_fields()
                         'id' => '',
                     ),
                     'choices' => array(
+                        'diplomatic_corps' => 'Diplomatic Corps',
                         'health' => 'Health',
                         'extractives' => 'Extractives',
                         'infrastructure' => 'Infrastructure',
