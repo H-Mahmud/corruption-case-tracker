@@ -92,22 +92,7 @@ function cct_case_data_fields()
                     'type' => 'number',
                     'instructions' => '',
                     'required' => 0,
-                    'conditional_logic' => array(
-                        array(
-                            array(
-                                'field' => 'field_66a5d36961b65',
-                                'operator' => '==',
-                                'value' => 'concluded_guilty',
-                            ),
-                        ),
-                        array(
-                            array(
-                                'field' => 'field_66a5d36961b65',
-                                'operator' => '==',
-                                'value' => 'concluded_via_settlement',
-                            ),
-                        ),
-                    ),
+                    'conditional_logic' => array(),
                     'wrapper' => array(
                         'width' => '50',
                         'class' => '',
@@ -130,22 +115,7 @@ function cct_case_data_fields()
                     'type' => 'number',
                     'instructions' => '',
                     'required' => 0,
-                    'conditional_logic' => array(
-                        array(
-                            array(
-                                'field' => 'field_66a5d36961b65',
-                                'operator' => '==',
-                                'value' => 'concluded_guilty',
-                            ),
-                        ),
-                        array(
-                            array(
-                                'field' => 'field_66a5d36961b65',
-                                'operator' => '==',
-                                'value' => 'concluded_via_settlement',
-                            ),
-                        ),
-                    ),
+                    'conditional_logic' => array(),
                     'wrapper' => array(
                         'width' => '50',
                         'class' => '',
