@@ -51,7 +51,8 @@ if (!class_exists('CCT_Case_Query')) {
                 $title_of_the_case = $this->get_search('cct_case_title');
                 $nature_of_the_case = $this->get_search('nature_of_the_case');
                 $summary_of_the_case = $this->get_search('summary_of_the_case');
-                array_push($meta_query_search, $title_of_the_case, $nature_of_the_case, $summary_of_the_case);
+                $number_of_the_case = $this->get_search('case_number');
+                array_push($meta_query_search, $title_of_the_case, $nature_of_the_case, $summary_of_the_case, $number_of_the_case);
             }
 
             $query['meta_query'][] = $meta_query_filter;
