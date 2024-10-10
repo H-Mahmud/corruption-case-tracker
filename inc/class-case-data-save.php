@@ -17,7 +17,6 @@ class CCT_Case_ACF_Data_Save
     private final function __construct()
     {
         add_action('save_post', array($this, 'case_status_period_date_save'), 10, 1);
-
     }
 
 
@@ -31,6 +30,12 @@ class CCT_Case_ACF_Data_Save
     {
         if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || !current_user_can('edit_post', $post_id))
             return;
+
+        if (!isset($_POST['post_type']) || $_POST['post_type'] != 'case')
+            return;
+
+        // Store case title in meta for better search performance
+        update_post_meta($post_id, 'cct_case_title', sanitize_text_field($_POST['post_title']));
 
         if (!isset($_POST['acf']))
             return;
@@ -51,7 +56,6 @@ class CCT_Case_ACF_Data_Save
         foreach ($status_attrs as $field) {
             $this->case_status_period_field_handle($post_id, 'delay_' . $field['status'], $field['is_delay'], $field['start_date'], $field['end_date']);
         }
-
     }
 
 
