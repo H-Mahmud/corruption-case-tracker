@@ -31,6 +31,10 @@ class CCT_Case_ACF_Data_Save
         if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || !current_user_can('edit_post', $post_id))
             return;
 
+        if (isset($_POST['post_type']) && $_POST['post_type'] == 'sanction') {
+            update_post_meta($post_id, 'sanction_title', sanitize_text_field($_POST['post_title']));
+        }
+
         if (!isset($_POST['post_type']) || $_POST['post_type'] != 'case')
             return;
 
