@@ -36,7 +36,7 @@ function cct_case_data_fields()
                         'trial_court' => 'Trial Court',
                         'concluded_via_settlement' => 'Concluded via Settlement',
                         'concluded_via_dismissal' => 'Concluded via Dismissal',
-                        'concluded_guilty' => 'Concluded; Guilty',
+                        'concluded_guilty' => 'Concluded: Guilty',
                         'concluded_not_guilty' => 'Concluded: Not Guilty',
                         'on_appeal_to_supreme_court' => 'On Appeal to Supreme Court',
                     ),
