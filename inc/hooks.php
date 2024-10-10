@@ -93,7 +93,44 @@ function cct_sanction_search_query($query)
         $query->set('post_type', 'sanction');
 
         $search_term = sanitize_text_field($_GET['s-search']);
-        $query->set('s', $search_term);
+
+        // Set up a meta query to search in postmeta
+        $meta_query = array(
+            'relation' => 'OR',
+            array(
+                'key'     => 'sanction_title',
+                'value'   => $search_term,
+                'compare' => 'LIKE'
+            ),
+            array(
+                'key'     => 'name',
+                'value'   => $search_term,
+                'compare' => 'LIKE'
+            ),
+            array(
+                'key'     => 'sanctioned_by',
+                'value'   => $search_term,
+                'compare' => 'LIKE'
+            ),
+            array(
+                'key'     => 'date_of_sanction',
+                'value'   => $search_term,
+                'compare' => 'LIKE'
+            ),
+            array(
+                'key'     => 'reason_for_sanction',
+                'value'   => $search_term,
+                'compare' => 'LIKE'
+            ),
+            array(
+                'key'     => 'scope_of_sanction',
+                'value'   => $search_term,
+                'compare' => 'LIKE'
+            ),
+        );
+
+        // Add the meta query to the main query
+        $query->set('meta_query', $meta_query);
     }
 }
 add_action('pre_get_posts', 'cct_sanction_search_query');
