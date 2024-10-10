@@ -48,21 +48,16 @@ if (!class_exists('CCT_Case_Query')) {
             // Search Query on Post Meta
             $meta_query_search = array('relation' => 'OR');
             if (isset($_GET['cct-search']) && !empty($_GET['cct-search'])) {
+                $title_of_the_case = $this->get_search('cct_case_title');
                 $nature_of_the_case = $this->get_search('nature_of_the_case');
                 $summary_of_the_case = $this->get_search('summary_of_the_case');
-                array_push($meta_query_search, $nature_of_the_case, $summary_of_the_case);
-
-                // Define search term on query to search on title
-                // $query['cct-search'] = $_GET['cct-search'];
-                $query['s'] = $_GET['cct-search'];
+                array_push($meta_query_search, $title_of_the_case, $nature_of_the_case, $summary_of_the_case);
             }
 
             $query['meta_query'][] = $meta_query_filter;
-            // $query['meta_query'][] = $meta_query_search;
-
+            $query['meta_query'][] = $meta_query_search;
 
             return new WP_Query($query);
-
         }
 
 
@@ -87,7 +82,6 @@ if (!class_exists('CCT_Case_Query')) {
                 'value' => $value,
                 'compare' => $compare,
             ];
-
         }
 
         /**
@@ -103,7 +97,7 @@ if (!class_exists('CCT_Case_Query')) {
             $search_term = $_GET['cct-search'];
 
             return [
-                'key' => 'nature_of_the_case',
+                'key' => $key,
                 'value' => $search_term,
                 'compare' => 'LIKE',
             ];
