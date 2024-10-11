@@ -169,12 +169,6 @@ function get_delay_duration_statuses()
             'end_date' => 'field_66da7e5e2cb56'
         ],
         [
-            'status' => 'pending_investigation',
-            'is_delay' => 'field_66da7ecb9a08b',
-            'start_date' => 'field_66da7efa9a08c',
-            'end_date' => 'field_66da7f1c9a08d'
-        ],
-        [
             'status' => 'under_investigation',
             'is_delay' => 'field_66dc0c10a8fe2',
             'start_date' => 'field_66dc0c25a8fe3',
@@ -187,19 +181,25 @@ function get_delay_duration_statuses()
             'end_date' => 'field_66dc0d44f5504'
         ],
         [
-            'status' => 'in_court',
+            'status' => 'trial_court',
             'is_delay' => 'field_66dc0d8b5c644',
             'start_date' => 'field_66dc0dae5c645',
             'end_date' => 'field_66dc0dc95c646'
         ],
         [
-            'status' => 'concluded',
+            'status' => 'concluded_via_settlement',
+            'is_delay' => 'field_66da7ecb9a08b',
+            'start_date' => 'field_66da7efa9a08c',
+            'end_date' => 'field_66da7f1c9a08d'
+        ],
+        [
+            'status' => 'concluded_via_dismissal',
             'is_delay' => 'field_66dc0e2f83dc0',
             'start_date' => 'field_66dc0e4383dc1',
             'end_date' => 'field_66dc0e5e83dc2'
         ],
         [
-            'status' => 'concluded_conviction',
+            'status' => 'concluded_guilty',
             'is_delay' => 'field_66dc0e7faa64d',
             'start_date' => 'field_66dc0e8eaa64e',
             'end_date' => 'field_66dc0ea6aa64f'
