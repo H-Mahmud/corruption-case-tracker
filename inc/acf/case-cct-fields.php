@@ -1141,7 +1141,7 @@ function cct_case_delay_date_fields()
             ),
             array(
                 'key' => 'field_66da7efa9a08c',
-                'label' => 'Pending Investigation Start',
+                'label' => 'Concluded via Settlement Start',
                 'name' => 'pending_investigation_start',
                 'aria-label' => '',
                 'type' => 'date_picker',
